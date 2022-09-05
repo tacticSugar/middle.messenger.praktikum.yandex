@@ -1,0 +1,25 @@
+{
+  "name": "sprint_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel ./src/index.html --port 3000",
+    "build": "parcel build ./src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tacticSugar/sprint_1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tacticSugar/sprint_1/issues"
+  },
+  "homepage": "https://github.com/tacticSugar/sprint_1#readme",
+  "devDependencies": {
+    "parcel": "^2.7.0",
+    "parcel-bundler": "^1.12.5"
+  }
+}
