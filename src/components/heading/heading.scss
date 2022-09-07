@@ -1,0 +1,12 @@
+h1 {
+  font-size: 2.5rem;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    margin: 0;
+  }
+}

@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: $mainGradientGray;
+  border: none;
+  border-radius: 100px;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background: $mainGradientColor;
+    color: $textColor;
+  }
+
+  &__inner {
+    width: 100%;
+    color: $textColor;
+
+    &_text-color {
+      &_gray {
+        color: rgba($textColor, 0.5);
+        &:hover {
+          color: $textColor;
+        }
+      }
+      &_white {
+        color: #fff;
+      }
+      &_link {
+        background: none;
+        font-weight: bold;
+        text-align: center;
+      }
+    }
+  }
+}

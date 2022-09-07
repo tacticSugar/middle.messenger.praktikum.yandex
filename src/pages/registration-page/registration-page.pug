@@ -1,0 +1,98 @@
+extends ../../layouts/ui.pug
+include ../../components/registration-card/registration-card.pug
+include ../../components/login-card/login-card.pug
+
+block content
+  main.registration
+    .registration__container
+      .registration__registration-card
+        +registration-card({
+          title: 'Регистрация',
+          formAction: 'registration-page',
+          textField: {
+            name: {
+              placeholder: 'Имя',
+              type: 'text',
+              name: 'name',
+              autocomplete: 'on',
+            },
+            surname: {
+              placeholder: 'Фамилия',
+              type: 'text',
+              name: 'surname',
+              autocomplete: 'on',
+            },
+            login: {
+              placeholder: 'Почта',
+              type: 'email',
+              name: 'email',
+              autocomplete: 'on',
+            },
+            password: {
+              placeholder: 'Пароль',
+              type: 'password',
+              name: 'password',
+              autocomplete: 'off',
+            },
+            nickname: {
+              placeholder: 'Логин',
+              type: 'text',
+              name: 'login',
+              autocomplete: 'on',
+            },
+            telephone: {
+              placeholder: 'Tel:+7',
+              type: 'tel',
+              name: 'tel',
+              autocomplete: 'on',
+            },
+          },
+          button: {
+            submit: {
+              buttonName: 'Зарегистрироваться',
+              type: 'submit',
+              textColor: 'gray',
+            },
+            enter: {
+              buttonName: 'Войти',
+              type: 'submit',
+              textColor: 'white',
+            },
+          },
+        },)
+
+  section.login
+    .login__container
+      .login__login-card
+        +login-card({
+          title: "Вход",
+          formAction: "registration-page",
+          textField: {
+            password: {
+              placeholder: "Пароль",
+              type: "password",
+              name: "password",
+              autocomplete: "off"
+            },
+            nickname: {
+              placeholder: "Логин",
+              type: "text",
+              name: "login",
+              autocomplete: "on"
+            },
+          },
+          button: {
+            auth: {
+              buttonName: "Авторизироваться",
+              type: "submit",
+              textColor: "gray",
+            },
+            noacc: {
+              buttonName: "Нет аккаунта?",
+              type: "submit",
+              textColor: "gray",
+              link: "link-test",
+            },
+          },
+        })
+  script(type="module" src="index.js")

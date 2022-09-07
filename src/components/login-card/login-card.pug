@@ -1,0 +1,29 @@
+include ../heading/heading.pug
+include ../button/button.pug
+include ../text-field/text-field.pug
+
+mixin login-card(params = {})
+  -
+    const {
+      title="",
+      formMethod="",
+      formAction="",
+      textField={},
+      button={}
+    } = params
+
+  .login-card
+    .login-card__title
+      +heading({title: title})
+      form(
+        class="login-card__form"
+        method=`${formMethod}`,
+        action=`./${formAction}.html`
+      )
+        section.login-card__details
+          .login-card__login-details_type_nickname
+            +text-field(textField.nickname)
+          .login-card__login-details_type_password
+            +text-field(textField.password)
+          +button(button.auth)
+          +button(button.noacc)

@@ -1,0 +1,6 @@
+import '../../styles/main.scss'
+import '../../layouts/ui'
+import '../../components/registration-card/index'
+import './registration-page.scss'
+import '../login-page/login-page.scss'
+import '../../components/login-card/login-card.scss'

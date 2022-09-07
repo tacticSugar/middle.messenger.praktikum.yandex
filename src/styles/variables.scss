@@ -1,0 +1,23 @@
+$textColor: rgb(31, 32, 65);
+
+$mainGradientGray: linear-gradient(to right, #ffffff, #90acaa, #6a9393, #ffffff)
+  47% 0%;
+$mainGradientColor: linear-gradient(
+    to right,
+    #ffffff,
+    #5df9ee,
+    #79d0d0,
+    #ffffff
+  )
+  47% 5%;
+
+//  borders
+@mixin border-main {
+  border-bottom: 2px solid;
+  border-image: $mainGradientGray;
+}
+
+@mixin border-focused {
+  border-bottom: 3px solid;
+  border-image: $mainGradientColor;
+}
