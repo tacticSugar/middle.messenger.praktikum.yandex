@@ -1,0 +1,18 @@
+mixin avatar(params = {})
+  -
+    const {
+      img="",
+      name="",
+    } = params
+
+  .avatar
+    .avatar__container
+      a.avatar__avatar(href="/#!")
+        img&attributes({
+          class: "avatar__img",
+          src: (`../../components/avatar/${img}.jpg`),
+          alt: "avatar",
+        })
+        .avatar__mask Изменить аватар
+      .avatar__description
+        .avatar__name #{name}

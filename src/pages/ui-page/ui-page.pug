@@ -1,0 +1,165 @@
+extends ../../layouts/ui.pug
+include ../../components/registration-card/registration-card.pug
+include ../../components/login-card/login-card.pug
+include ../../components/profile-card/profile-card.pug
+
+block content
+  main.registration
+    .registration__container
+      .registration__registration-card
+        +registration-card({
+          title: 'Регистрация',
+          formAction: 'registration-page',
+          textField: {
+            name: {
+              placeholder: 'Имя',
+              type: 'text',
+              name: 'name',
+              autocomplete: 'on',
+            },
+            surname: {
+              placeholder: 'Фамилия',
+              type: 'text',
+              name: 'surname',
+              autocomplete: 'on',
+            },
+            login: {
+              placeholder: 'Почта',
+              type: 'email',
+              name: 'email',
+              autocomplete: 'on',
+            },
+            password: {
+              placeholder: 'Пароль',
+              type: 'password',
+              name: 'password',
+              autocomplete: 'off',
+            },
+            nickname: {
+              placeholder: 'Логин',
+              type: 'text',
+              name: 'login',
+              autocomplete: 'on',
+            },
+            telephone: {
+              placeholder: '+7 (___)___-__-__',
+              type: 'tel',
+              name: 'tel',
+              autocomplete: 'on',
+            },
+          },
+          button: {
+            submit: {
+              buttonName: 'Зарегистрироваться',
+              type: 'submit',
+              textColor: 'gray',
+            },
+            enter: {
+              buttonName: 'Войти',
+              type: 'submit',
+              textColor: 'white',
+            },
+          },
+        },)
+
+  section.login
+    .login__container
+      .login__login-card
+        +login-card({
+          title: "Вход",
+          formAction: "login-page",
+          textField: {
+            password: {
+              placeholder: "Пароль",
+              type: "password",
+              name: "password",
+              autocomplete: "off"
+            },
+            nickname: {
+              placeholder: "Логин",
+              type: "text",
+              name: "login",
+              autocomplete: "on"
+            },
+          },
+          button: {
+            auth: {
+              buttonName: "Авторизироваться",
+              type: "submit",
+              textColor: "gray",
+            },
+            noacc: {
+              buttonName: "Нет аккаунта?",
+              type: "submit",
+              textColor: "gray",
+              link: "link-test",
+            },
+          },
+        })
+
+  section.profile
+    .profile__container
+      .profile__profile-card
+        +profile-card({
+          formAction: 'profile-page',
+          textField: {
+            name: {
+              placeholder: 'Имя',
+              type: 'text',
+              name: 'name',
+              autocomplete: 'on',
+            },
+            surname: {
+              placeholder: 'Фамилия',
+              type: 'text',
+              name: 'surname',
+              autocomplete: 'on',
+            },
+            login: {
+              placeholder: 'Почта',
+              type: 'email',
+              name: 'email',
+              autocomplete: 'on',
+            },
+            nickname: {
+              placeholder: 'Логин',
+              type: 'text',
+              name: 'login',
+              autocomplete: 'on',
+            },
+            telephone: {
+              placeholder: 'Tel:+7',
+              type: 'tel',
+              name: 'tel',
+              autocomplete: 'on',
+            },
+          },
+          button: {
+            changeData: {
+              buttonName: 'Изменить данные',
+              type: 'submit',
+              textColor: 'gray',
+              link: "link-test"
+            },
+            changePassword: {
+              buttonName: 'Изменить пароль',
+              type: 'submit',
+              textColor: 'gray',
+              link: "link-test",
+            },
+            exit: {
+              buttonName: 'Выйти',
+              type: 'submit',
+              textColor: 'red',
+              link: "link-test",
+            },
+          },
+          avatar: {
+            testAva: {
+              img: "avatar",
+              name: "Vladimir",
+            },
+          },
+        },)
+
+  script(type="module" src="index.js")

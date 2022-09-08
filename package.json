@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel ./src/pages/registration-page/registration-page.pug --port 3000",
-    "build": "parcel build ./src/pages/registration-page/registration-page.pug --no-minify"
-
+    "start": "parcel ./src/pages/ui-page/ui-page.pug --port 3000",
+    "build": "parcel build ./src/pages/ui-page/ui-page.pug --no-minify"
   },
   "repository": {
     "type": "git",
