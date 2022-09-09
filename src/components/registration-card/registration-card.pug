@@ -14,7 +14,7 @@ mixin registration-card(params = {})
 
   .registration-card
     .registration-card__title
-      +heading({title: title})
+      +heading({title: title, level: "h1"})
       form(
         class="registration-card__form"
         method=`${formMethod}`,

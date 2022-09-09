@@ -8,11 +8,24 @@
   }
 
   &__img {
-    width: 100px;
-    height: 100px;
     border: none;
     border-radius: 50px;
-    position: absolute;
+
+    &_big {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+    &_small {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__avatar {
+    &:hover .avatar__mask {
+      visibility: visible;
+    }
   }
 
   &__mask {
@@ -31,12 +44,6 @@
     justify-content: center;
     text-align: center;
     visibility: hidden;
-  }
-
-  &__avatar {
-    &:hover .avatar__mask {
-      visibility: visible;
-    }
   }
 
   &__name {

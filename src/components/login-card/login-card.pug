@@ -14,7 +14,7 @@ mixin login-card(params = {})
 
   .login-card
     .login-card__title
-      +heading({title: title})
+      +heading({title: title, level: "h1"})
       form(
         class="login-card__form"
         method=`${formMethod}`,

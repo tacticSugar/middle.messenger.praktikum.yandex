@@ -2,8 +2,14 @@ extends ../../layouts/ui.pug
 include ../../components/registration-card/registration-card.pug
 include ../../components/login-card/login-card.pug
 include ../../components/profile-card/profile-card.pug
+include ../../components/mod-avatar-card/mod-avatar-card.pug
 
 block content
+  nav.navigation
+    a(href="../login-page/login-page.pug") login page
+    a(href="../registration-page/registration-page.pug") registration page
+    a(href="../profile-page/profile-page.pug") profile page
+    a(href="../link-test.pug") chats page
   main.registration
     .registration__container
       .registration__registration-card
@@ -92,7 +98,7 @@ block content
               buttonName: "Нет аккаунта?",
               type: "submit",
               textColor: "gray",
-              link: "link-test",
+              link: "../link-test",
             },
           },
         })
@@ -139,27 +145,52 @@ block content
               buttonName: 'Изменить данные',
               type: 'submit',
               textColor: 'gray',
-              link: "link-test"
+              link: "../link-test"
             },
             changePassword: {
               buttonName: 'Изменить пароль',
               type: 'submit',
               textColor: 'gray',
-              link: "link-test",
+              link: "../link-test",
             },
             exit: {
               buttonName: 'Выйти',
               type: 'submit',
               textColor: 'red',
-              link: "link-test",
+              link: "../link-test",
             },
           },
           avatar: {
             testAva: {
               img: "avatar",
               name: "Vladimir",
+              inProfile: true,
             },
           },
         },)
 
-  script(type="module" src="index.js")
+
+  section.mod-avatar
+    .mod-avatar__container
+      .mod-avatar__mod-avatar-card
+        +mod-avatar-card({
+          title: "Загрузить файл",
+          formAction: "login-page",
+          textField: {
+            newAvatar: {
+              placeholder: "",
+              type: "file",
+              name: "file",
+              autocomplete: "off"
+            },
+          },
+          button: {
+            changeAvatar: {
+              buttonName: 'Поменять',
+              type: 'submit',
+              textColor: 'gray',
+            },
+          }
+        })
+
+  script(src="./index.js")

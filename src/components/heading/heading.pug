@@ -1,4 +1,16 @@
-mixin heading({title=""})
+mixin heading(params = {})
+
+  -
+    const {
+      title="",
+      level="h1"
+    } = params
+
+    const levelMod = `heading__title_level_${level}`
 
   .heading
-    h1.heading__title #{title}
+    case level
+      when 'h1': h1.heading__title(class=levelMod) #{title}
+      when 'h2': h2.heading__title(class=levelMod) #{title}
+      when 'h3': h3.heading__title(class=levelMod) #{title}
+

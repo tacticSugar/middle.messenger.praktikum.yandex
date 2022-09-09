@@ -1,1 +1,1 @@
-import './heading.scss';
+import './heading.scss'

@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+.mod-avatar-card {
+  padding: 40px;
+
+  &__title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    & input {
+      display: block;
+      position: relative;
+      visibility: hidden;
+      text-align: center;
+      &::after {
+        content: 'Выберите файл с компьютера';
+        visibility: visible;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+        padding-top: 10px;
+        color: gray;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+  }
+}

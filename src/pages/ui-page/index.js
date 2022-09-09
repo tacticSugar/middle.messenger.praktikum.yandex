@@ -1,10 +1,13 @@
 import '../../styles/main.scss'
 import '../../layouts/ui'
 
+import '../../components/registration-card/index'
+import '../../components/login-card/index'
+import '../../components/profile-card/index'
+import '../../components/mod-avatar-card/index'
+
 import '../registration-page/registration-page.scss'
 import '../login-page/login-page.scss'
 import '../profile-page/profile-page.scss'
 
-import '../../components/registration-card/index'
-import '../../components/login-card/index'
-import '../../components/profile-card/index'
+import './ui-page.scss'
