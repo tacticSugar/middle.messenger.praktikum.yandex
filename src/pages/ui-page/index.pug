@@ -3,6 +3,7 @@ include ../../components/registration-card/registration-card.pug
 include ../../components/login-card/login-card.pug
 include ../../components/profile-card/profile-card.pug
 include ../../components/mod-avatar-card/mod-avatar-card.pug
+include ../../components/mod-pass-card/mod-pass-card.pug
 
 block content
   nav.navigation
@@ -193,4 +194,37 @@ block content
           }
         })
 
-  script(src="./index.js")
+  section.mod-pass
+    .mod-pass__container
+      .mod-pass__profile-card
+        +mod-pass-card({
+          formAction: 'profile-page',
+          textField: {
+            passwordOld: {
+              placeholder: "Старый пароль",
+              type: "password",
+              name: "password",
+              autocomplete: "off"
+            },
+            passwordNew: {
+              placeholder: "Новый пароль",
+              type: "password",
+              name: "password",
+              autocomplete: "off"
+            },
+            passwordNewAgain: {
+              placeholder: "Новый пароль еще раз",
+              type: "password",
+              name: "password",
+              autocomplete: "off"
+            },
+          },
+          button: {
+            savePassword: {
+              buttonName: 'Сохранить',
+              type: 'submit',
+              textColor: 'gray',
+            },
+          },
+        },)
+
