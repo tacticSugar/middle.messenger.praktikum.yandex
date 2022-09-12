@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel ./src/pages/ui-page/index.pug --port 3000",
+    "build-net": "parcel build ./src/pages/ui-page/index.pug --no-minify",
     "build": "parcel build ./src/pages/ui-page/index.pug --no-minify && node ./server.js"
   },
   "repository": {
