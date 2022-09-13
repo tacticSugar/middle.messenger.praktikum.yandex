@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel ./src/pages/ui-page/index.pug --port 3000",
-    "build-net": "parcel build ./src/pages/ui-page/index.pug",
-    "build": "parcel build ./src/pages/ui-page/index.pug && node ./server.js"
+    "start-parcel": "parcel ./src/pages/ui-page/index.pug --port 3000",
+    "build": "parcel build ./src/pages/ui-page/index.pug",
+    "start": "parcel build ./src/pages/ui-page/index.pug && node ./server.js"
   },
   "repository": {
     "type": "git",

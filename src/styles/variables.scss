@@ -13,7 +13,7 @@ $mainGradientColor: linear-gradient(
 
 //  borders
 @mixin border-main {
-  border-bottom: 2px solid;
+  border-bottom: 3px solid;
   border-image: $mainGradientGray;
 }
 
