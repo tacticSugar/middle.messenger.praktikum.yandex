@@ -1,0 +1,37 @@
+extends ../../layouts/ui.pug
+include ../../components/login-card/login-card.pug
+
+block content
+  section.login
+    .login__container
+      .login__login-card
+        +login-card({
+          title: "Вход",
+          formAction: "registration-page",
+          textField: {
+            password: {
+              placeholder: "Пароль",
+              type: "password",
+              name: "password",
+              autocomplete: "on"
+            },
+            nickname: {
+              placeholder: "Логин",
+              type: "text",
+              name: "login",
+              autocomplete: "off"
+            },
+          },
+          button: {
+            auth: {
+              buttonName: "Авторизироваться",
+              type: "submit",
+              textColor: "gray",
+            },
+            noacc: {
+              buttonName: "Нет аккаунта?",
+              textColor: "gray",
+              link: "../registration-page/registration-page",
+            },
+          },
+        })

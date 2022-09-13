@@ -1,0 +1,19 @@
+.heading {
+  text-align: center;
+
+  &__title {
+    margin: 0;
+
+    &_level_h1 {
+      font-size: 2.5rem;
+    }
+
+    &_level_h2 {
+      font-size: 2rem;
+    }
+
+    &_level_h3 {
+      font-size: 1.5rem;
+    }
+  }
+}
