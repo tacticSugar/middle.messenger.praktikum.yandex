@@ -23,6 +23,10 @@
   }
 
   &__avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     &:hover .avatar__mask {
       visibility: visible;
     }

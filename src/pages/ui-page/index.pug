@@ -4,6 +4,7 @@ include ../../components/login-card/login-card.pug
 include ../../components/profile-card/profile-card.pug
 include ../../components/mod-avatar-card/mod-avatar-card.pug
 include ../../components/mod-pass-card/mod-pass-card.pug
+include ../../components/chat/chat.pug
 
 block variables
   - const title = "UI-KIT"
@@ -232,3 +233,14 @@ block content
           },
         },)
 
+  section.chats
+    .chats__container
+      .chats__chat
+        +chat({
+          avatar: {
+            testAva2: {
+              img: "avatar",
+              name: "Vladimir",
+            },
+          },
+        })

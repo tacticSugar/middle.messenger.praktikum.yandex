@@ -3,7 +3,7 @@ mixin avatar(params = {})
     const {
       img="",
       name="",
-      inProfile="",
+      inProfile ="",
     } = params
 
     const sizeMod = inProfile ? "avatar__img_big" : "avatar__img_small"
@@ -18,5 +18,5 @@ mixin avatar(params = {})
         })
         if inProfile
           .avatar__mask Изменить аватар
-      .avatar__description
-        .avatar__name #{name}
+          .avatar__description
+            .avatar__name #{name}
