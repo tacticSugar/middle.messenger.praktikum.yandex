@@ -4,7 +4,6 @@ include ../../components/login-card/login-card.pug
 include ../../components/profile-card/profile-card.pug
 include ../../components/mod-avatar-card/mod-avatar-card.pug
 include ../../components/mod-pass-card/mod-pass-card.pug
-include ../../components/chat/chat.pug
 include ../../components/chat-list/chat-list.pug
 
 block variables
@@ -95,18 +94,7 @@ block content
 
   section.chats
     .chats__container
-      .chats__chat
-        +chat({
-          avatar: {
-            img: "avatar",
-            name: "Vladimir",
-            },
-          },
-        )
-
-  section.chats-list
-    .chats-list__container
-      .chats-list__chat-list
+      .chats__chat-list
         +chat-list({
           button: {
             profile: {
@@ -123,7 +111,13 @@ block content
             },
           },
           chat: {
-            avatar1: {
+            avatar: {
+              img: "avatar",
+              name: "Vladimir",
+              }
+          },
+          chat: {
+            avatar: {
               img: "avatar",
               name: "Vladimir",
               }
