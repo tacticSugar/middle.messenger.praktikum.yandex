@@ -7,6 +7,7 @@ import '../../components/profile-card/index'
 import '../../components/mod-avatar-card/index'
 import '../../components/mod-pass-card/index'
 import '../../components/chat/index'
+import '../../components/chat-list/index'
 
 import '../registration-page/registration-page.scss'
 import '../login-page/login-page.scss'
