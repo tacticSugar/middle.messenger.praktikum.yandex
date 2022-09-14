@@ -1,0 +1,20 @@
+include ../chat/chat.pug
+include ../button/button.pug
+include ../text-field/text-field.pug
+
+mixin chat-list(params = {})
+  -
+    const {
+      chat={},
+      textField={},
+      button={}
+    } = params
+
+  nav.chat-list
+    .chat-list__wrapper
+      .chat-list__container
+        .chat-list__header
+          +button(button.profile)
+          +text-field(textField.search)
+        .chat-list__chats
+          +chat(chat.avatar1)

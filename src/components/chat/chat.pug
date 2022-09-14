@@ -5,16 +5,18 @@ mixin chat(params = {})
     const {
       avatar={},
     } = params
-    const {name, img} = avatar.testAva2
+
+    const {name, img} = avatar
+
   .chat
     .chat__container
-      .chat__avatar 
-        +avatar({img})
-      .chat__main 
+      .chat__avatar
+      +avatar({img})
+      .chat__main
         .chat__name
           span #{name}
         .chat__message
           span Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message
-      .chat__numbers 
-        span time 
+      .chat__numbers
+        span time
         span counter
