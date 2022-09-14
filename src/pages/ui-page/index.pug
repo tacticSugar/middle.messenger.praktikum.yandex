@@ -5,6 +5,9 @@ include ../../components/profile-card/profile-card.pug
 include ../../components/mod-avatar-card/mod-avatar-card.pug
 include ../../components/mod-pass-card/mod-pass-card.pug
 
+block variables
+  - const title = "UI-KIT"
+
 block content
   nav.navigation
     a(href="../login-page/login-page.pug") login page
