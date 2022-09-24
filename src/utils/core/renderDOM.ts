@@ -1,5 +1,3 @@
-import { Block } from './Block';
-
 export function renderDOM(selector: string, block: any) {
   const root = document.querySelector(selector);
   if (!root) {

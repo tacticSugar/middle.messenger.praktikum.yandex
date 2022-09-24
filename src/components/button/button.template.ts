@@ -1,5 +1,6 @@
 export const template = `
 #{buttonTag}&attributes(btnAttributes)
-  span.button__inner(
-    class=modifier
-  )= innerText`;
+  if (!withArrow)
+    span.button__inner(class=modifier)= innerText
+  else
+    span.button__arrow`;

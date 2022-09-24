@@ -1,9 +1,9 @@
-import { template as btnTemplate } from './button.template';
 import { Block } from '../../utils/core/Block';
+import { template as btnTemplate } from './button.template';
 import { renderDOM } from '../../utils/core/renderDOM';
-import { computeButtonTag, computeButtonAttributes } from './button-helpers';
 import { ButtonProps } from './button-types';
 import { colorModifiers } from './button-consts';
+import { computeButtonTag, computeButtonAttributes } from './button-helpers';
 import './button.scss';
 
 export class Button extends Block<ButtonProps> {
@@ -13,29 +13,27 @@ export class Button extends Block<ButtonProps> {
   }
 
   render() {
-    const { link, type, innerText, buttonStyle } = this.props;
-    const attributes = computeButtonAttributes({ link, buttonStyle });
+    const { link, type, innerText, buttonStyle, withArrow } = this.props;
     const modifier = colorModifiers[buttonStyle];
+    const buttonAttributes = computeButtonAttributes({ link, buttonStyle });
 
     return this.compile(btnTemplate, {
       buttonTag: computeButtonTag(link),
       innerText,
       modifier,
+      withArrow,
       btnAttributes: {
-        class: attributes.class,
-        href: attributes.href,
+        class: buttonAttributes.class,
+        href: buttonAttributes.href,
         type,
       },
     });
   }
 }
 const buttonProps: ButtonProps = {
-  link: 'hsdsd',
-  innerText: 'ggfgfg',
-  buttonStyle: 'gray',
+  withArrow: true,
+  type: 'submit',
 };
-debugger;
 const button = new Button(buttonProps);
-console.log('button hello');
 
 renderDOM('#app', button);

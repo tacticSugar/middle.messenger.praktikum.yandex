@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 200px;
+  max-width: 200px;
   padding: 5px;
   margin-top: 5px;
   text-transform: uppercase;
@@ -21,7 +21,12 @@
     background: $mainGradientColor;
     color: $textColor;
   }
-
+  &__arrow {
+    border: 2px solid red;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+  }
   &__inner {
     width: 100%;
     color: $textColor;
@@ -36,13 +41,13 @@
       &_white {
         color: #fff;
       }
+      &_red {
+        color: red;
+      }
       &_link {
         background: none;
         font-weight: bold;
         text-align: center;
-      }
-      &_red {
-        color: red;
       }
     }
   }

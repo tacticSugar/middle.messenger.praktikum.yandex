@@ -148,7 +148,7 @@ export class Block<TProps extends {}> {
 
   // работа с событиями
   private _addEvents() {
-    // @ts-ignore
+    // @ts-expect-error
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -157,7 +157,7 @@ export class Block<TProps extends {}> {
   }
 
   private _delEvents() {
-    // @ts-ignore
+    // @ts-expect-error
     let { events } = this.props;
     events = events || {};
     Object.keys(events).forEach((eventName) => {

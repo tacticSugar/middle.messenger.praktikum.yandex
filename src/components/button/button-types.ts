@@ -4,10 +4,11 @@ type ColorModifiersKeys = keyof typeof colorModifiers;
 
 export type ButtonProps = {
   // events?: Record<string, any>;
-  buttonStyle: ColorModifiersKeys;
-  innerText: string;
+  innerText?: string;
+  buttonStyle?: ColorModifiersKeys;
   link?: string;
   type?: 'button' | 'reset' | 'submit';
+  withArrow?: boolean;
 };
 
 export type ButtonAttribute = {

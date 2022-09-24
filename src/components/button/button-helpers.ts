@@ -2,7 +2,8 @@ import { colorModifiers } from './button-consts';
 import { ButtonAttributes, ButtonProps } from './button-types';
 
 export function computeButtonTag(link?: string) {
-  return link ? 'a' : 'button';
+  if (typeof link === 'string') return 'a';
+  return 'button';
 }
 
 export function computeButtonAttributes({ link, buttonStyle }: Partial<ButtonProps>) {
@@ -13,7 +14,7 @@ export function computeButtonAttributes({ link, buttonStyle }: Partial<ButtonPro
       href: `./${link}.pug`,
     },
     button: {
-      class: ['button'],
+      class: ['button', colorModifiers[buttonStyle]],
     },
   };
   return buttonAttributes[buttonTag];
