@@ -21,12 +21,12 @@ export class Avatar extends Block<AvatarProps> {
   }
 }
 
-const avatarProps = {
-  img: 'avatar2',
-  name: 'Vova',
-  inProfile: true,
-};
+// const avatarProps = {
+//   img: 'avatar2',
+//   name: 'Vova',
+//   inProfile: true,
+// };
 
-const avatar = new Avatar(avatarProps);
+// const avatar = new Avatar(avatarProps);
 
-renderDOM('#app', avatar);
+// renderDOM('#app', avatar);

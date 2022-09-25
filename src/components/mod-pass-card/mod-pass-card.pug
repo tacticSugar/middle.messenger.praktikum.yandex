@@ -22,11 +22,8 @@ mixin mod-pass-card(params = {})
         action=`./${formAction}.html`
       )
         section.mod-pass-card__details
-          //- .mod-pass-card__login-details_type_password
           +text-field(textField.passwordOld)
-          //- .mod-pass-card__login-details_type_password
           +text-field(textField.passwordNew)
-          //- .mod-pass-card__login-details_type_password
           +text-field(textField.passwordNewAgain)
           +button(button.savePassword)
 

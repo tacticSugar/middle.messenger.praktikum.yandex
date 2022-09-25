@@ -1,4 +1,4 @@
-export const template = `
+export const buttonTemplate = `
 #{buttonTag}&attributes(btnAttributes)
   if (!withArrow)
     span.button__inner(class=modifier)= innerText

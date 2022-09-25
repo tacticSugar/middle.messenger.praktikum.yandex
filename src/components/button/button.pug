@@ -1,0 +1,30 @@
+mixin button(params = {})
+  -
+    const {
+      type="button",
+      buttonName="button",
+      link="",
+      textColor="gray",
+    } =  params
+    const colorModifiers = {
+      gray: "button__inner_text-color_gray",
+      white: "button__inner_text-color_white",
+      red: "button__inner_text-color_red",
+      link: "button__inner_text-color_link",
+    }
+    const mainClass = "button"
+    const buttonTag = link ? 'a' : 'button'
+    const buttonAttributes = {
+      a: {
+        class: [mainClass, colorModifiers.link],
+        href: `./${link}.pug`,
+      },
+      button: {
+        class: [mainClass],
+        type: type,
+      }
+    }
+  #{buttonTag}&attributes(buttonAttributes[buttonTag])
+    span.button__inner(
+      class=[colorModifiers[textColor]]
+    ) #{buttonName}

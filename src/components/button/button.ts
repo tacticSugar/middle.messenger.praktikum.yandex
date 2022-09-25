@@ -1,5 +1,5 @@
 import { Block } from '../../utils/core/Block';
-import { template as btnTemplate } from './button.template';
+import { buttonTemplate } from './button.template';
 import { renderDOM } from '../../utils/core/renderDOM';
 import { ButtonProps } from './button-types';
 import { colorModifiers } from './button-consts';
@@ -17,7 +17,7 @@ export class Button extends Block<ButtonProps> {
     const modifier = colorModifiers[buttonStyle];
     const buttonAttributes = computeButtonAttributes({ link, buttonStyle });
 
-    return this.compile(btnTemplate, {
+    return this.compile(buttonTemplate, {
       buttonTag: computeButtonTag(link),
       innerText,
       modifier,
