@@ -1,11 +1,26 @@
+import { profileCardTemplate } from './profile-card.template';
+import { Block } from '../../utils/core/Block';
+import { renderDOM } from '../../utils/core/renderDOM';
+
 export class ProfileCard extends Block<ProfileCardProps> {
   constructor(props: ProfileCardProps) {
     super('div', props);
   }
 
   render() {
-    const { title, formMethod, formAction, textField, button, avatar } = this.props;
-    return this.compile(profileCardTemplate);
+    const { login, nickname, name, surname, telephone, changeData, changePassword, exit, testAva } =
+      this.props;
+    return this.compile(profileCardTemplate, {
+      login,
+      nickname,
+      name,
+      surname,
+      telephone,
+      changeData,
+      changePassword,
+      exit,
+      testAva,
+    });
   }
 }
 

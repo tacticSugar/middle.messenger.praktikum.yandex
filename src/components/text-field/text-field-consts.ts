@@ -1,10 +1,8 @@
-export const mainClass = 'text-field__input' as const;
-
 export const inputAttributes = {
-  class: [mainClass, inputPointerTypeClass],
-  type: type,
-  name: name,
-  autocomplete: autocomplete,
-  placeholder: placeholder,
+  class: 'text-field__input',
+  type,
+  name,
+  autocomplete,
+  placeholder,
   spellcheck: withSpellcheck,
 };

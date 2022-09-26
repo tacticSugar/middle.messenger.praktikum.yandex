@@ -1,11 +1,20 @@
+import { Block } from '../../utils/core/Block';
+import { renderDOM } from '../../utils/core/renderDOM';
+import { modPassCardTemplate } from './mod-pass-card.template';
+
 export class ModPassCard extends Block<ModPassCardProps> {
   constructor(props: ModPassCardProps) {
     super('div', props);
   }
 
   render() {
-    const { title, formMethod, formAction, textField, button } = this.props;
-    return this.compile(modPassCardTemplate);
+    const { passwordOld, passwordNew, passwordNewAgain, savePassword } = this.props;
+    return this.compile(modPassCardTemplate, {
+      passwordOld,
+      passwordNew,
+      passwordNewAgain,
+      savePassword,
+    });
   }
 }
 

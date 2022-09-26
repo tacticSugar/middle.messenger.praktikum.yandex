@@ -4,7 +4,7 @@ export function computeAvatarAttributes({ inProfile, img }: Partial<AvatarProps>
   const sizeMod: string = inProfile ? 'avatar__img_big' : 'avatar__img_small';
   const avatarAttributes: AvatarAttribute = {
     class: ['avatar__img', sizeMod],
-    src: `../avatar/${img}.jpg`,
+    src: img,
     alt: 'avatar',
   };
   return avatarAttributes;

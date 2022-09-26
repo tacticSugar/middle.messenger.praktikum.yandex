@@ -1,6 +1,8 @@
-export const chatListTemplate = `
+export const headingTemplate = `
 .heading
-  case level
-    when 'h1': h1.heading__title(class=levelMod) #{title}
-    when 'h2': h2.heading__title(class=levelMod) #{title}
-    when 'h3': h3.heading__title(class=levelMod) #{title}`;
+  if level === "h1"
+    h1.heading__title(class=levelMod)= title
+  else if level === "h2"
+    h2.heading__title(class=levelMod)= title
+  else if level === "h3"
+    h3.heading__title(class=levelMod)= title`;

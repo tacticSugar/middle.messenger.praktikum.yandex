@@ -2,10 +2,10 @@ export const chatTemplate = `
 .chat
   .chat__container
     .chat__avatar
-      #{myAvatar}
+      != avatar
     .chat__main
       .chat__name
-        span #{name}
+        span= chatName
       .chat__message
         span Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message
     .chat__numbers

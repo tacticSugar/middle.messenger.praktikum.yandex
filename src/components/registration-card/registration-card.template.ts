@@ -1,26 +1,15 @@
 export const registrationCardTemplate = `
 .registration-card
   .registration-card__title
-    +heading({title: title, level: "h1"})
-    form(
-      class="registration-card__form"
-      method=`${formMethod}`,
-      action=`./${formAction}.html`
-    )
+    != regHeading
+    form(class="registration-card__form")
       section.registration-card__details
-        //- .registration-card__login-details_type_email
-        +text-field(textField.login)
-        //- .registration-card__login-details_type_nickname
-        +text-field(textField.nickname)
-        //- .registration-card__details_type_name
-        +text-field(textField.name)
-        //- .registration-card__details_type_surname
-        +text-field(textField.surname)
-        //- .registration-card__details_type_telephone
-        +text-field(textField.telephone)
-        //- .registration-card__login-details_type_password
-        +text-field(textField.password)
-        //- .registration-card__login-details_type_password
-        +text-field(textField.password)
-        +button(button.submit)
-        +button(button.enter)`;
+        != regLogin
+        != regNickname
+        != regName
+        != regSurname
+        != regTelephone
+        != regPassword
+        != regPasswordAgain
+        != regBtnSubmit
+        != regBtnEnter`;

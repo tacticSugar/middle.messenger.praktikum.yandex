@@ -1,3 +1,9 @@
+import { Block } from '../../utils/core/Block';
+import { renderDOM } from '../../utils/core/renderDOM';
+import { computeHeadingAttributes } from './heading-helpers';
+import { HeadingProps } from './heading-types';
+import { headingTemplate } from './heading.template';
+
 export class Heading extends Block<HeadingProps> {
   constructor(props: HeadingProps) {
     super('div', props);
@@ -5,19 +11,16 @@ export class Heading extends Block<HeadingProps> {
 
   render() {
     const { title, level } = this.props;
-    const levelMod = `heading__title_level_${level}`;
-    return this.compile(headingTemplate);
+    const levelMod: string = `heading__title_level_${level}`;
+    return this.compile(headingTemplate, { title, level, levelMod });
   }
 }
 
-const chatProps: ChatProps = {
-  avatar: {
-    img: 'avatar2',
-    name: 'Vova',
-    inProfile: true,
-  },
+const headingProps: HeadingProps = {
+  title: 'hiQqQQQQQ',
+  level: 'h1',
 };
 
-const chat = new Chat(chatProps);
+const chat = new Heading(headingProps);
 
 renderDOM('#app', chat);

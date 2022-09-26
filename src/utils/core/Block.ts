@@ -3,28 +3,30 @@ import { ProxyProps } from './ProxyProps';
 import { v4 as makeUUID } from 'uuid';
 import { compile as pugCompile } from 'pug';
 
-interface IChildren {
-  [key: string]: Block<TProps>;
-}
+type BlockProps = {
+  withInternalID?: boolean;
+  [key: string]: any;
+};
 
-export type TProps = Record<string, any>;
+type Children = {
+  [key: string]: Block<BlockProps>;
+};
 
-enum Events {
-  INIT = 'init',
-  FLOW_CDM = 'flow:component-did-mount',
-  FLOW_CDU = 'flow:component-did-update',
-  FLOW_RENDER = 'flow:render',
-}
+const Events = {
+  INIT: 'init',
+  FLOW_CDM: 'flow:component-did-mount',
+  FLOW_CDU: 'flow:component-did-update',
+  FLOW_RENDER: 'flow:render',
+} as const;
 
-export class Block<TProps extends {}> {
+export class Block<TProps extends BlockProps = {}> {
   protected _element: HTMLElement | undefined;
   protected _meta;
   protected eventBus: Function;
   public props: TProps;
-  protected children: IChildren;
-  public id: string | null = null;
+  protected children: Children;
+  public id: string;
 
-  // создаём детей, пропсы, запускаем событие INIT
   constructor(tagName: string = 'div', propsAndChildren: TProps) {
     const eventBus = new EventBus();
 
@@ -55,7 +57,7 @@ export class Block<TProps extends {}> {
   // создаём _element и эмитим FLOW_RENDER
   init() {
     const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName) as HTMLElement;
+    this._element = this._createDocumentElement(tagName);
     this.eventBus().emit(Events.FLOW_RENDER);
   }
 
@@ -118,7 +120,7 @@ export class Block<TProps extends {}> {
   }
 
   // переопределить у детей
-  render() {
+  render(): string | DocumentFragment | undefined {
     return '';
   }
 
@@ -127,12 +129,8 @@ export class Block<TProps extends {}> {
   }
 
   protected _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName);
-    if (this.props['withInternalID'] === true) {
-      if (!this.id) {
-        return;
-      }
+    if (this.props.withInternalID === true) {
       element.setAttribute('data-id', this.id);
     }
     return element;
@@ -148,7 +146,6 @@ export class Block<TProps extends {}> {
 
   // работа с событиями
   private _addEvents() {
-    // @ts-expect-error
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -157,7 +154,6 @@ export class Block<TProps extends {}> {
   }
 
   private _delEvents() {
-    // @ts-expect-error
     let { events } = this.props;
     events = events || {};
     Object.keys(events).forEach((eventName) => {
@@ -165,11 +161,14 @@ export class Block<TProps extends {}> {
     });
   }
 
-  private _getChildren(propsAndChildren: TProps) {
-    const children: Record<string, any> = {};
+  /**
+   * Identify children by instanceof Block
+   */
+  private _getChildren(incomingObject: TProps) {
+    const children: Record<string, Block> = {};
     const props: Record<string, any> = {};
 
-    Object.entries(propsAndChildren).forEach(([key, value]) => {
+    Object.entries(incomingObject).forEach(([key, value]) => {
       if (value instanceof Block) {
         children[key] = value;
       } else {
@@ -180,24 +179,33 @@ export class Block<TProps extends {}> {
     return { children, props };
   }
 
+  /**
+   * Compile with pug
+   */
   compile(template: string, props: Record<string, any>) {
     const propsAndStubs = { ...props };
+
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = pugCompile(`div(data-id="${child.id}")`)();
+      const compiledChild = pugCompile(`div(data-id="${child.id}")`)();
+      propsAndStubs[key] = compiledChild;
     });
+
     const fragment = this._createDocumentElement('template');
 
-    if (!fragment) {
-      console.log('return with nothing');
-      return;
-    }
+    if (!(fragment instanceof HTMLTemplateElement)) return;
+
     fragment.innerHTML = pugCompile(template)(propsAndStubs);
 
-    Object.values(this.children).forEach((child) => {
-      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
+    if (fragment) {
+      Object.values(this.children).forEach((child) => {
+        const stub = fragment.content.querySelector(`[data-id="${child.id}"]`);
 
-      stub.replaceWith(child.getContent());
-    });
-    return (fragment as any).content;
+        if (stub) {
+          stub.replaceWith(child.getContent());
+        }
+      });
+    }
+
+    return fragment.content;
   }
 }

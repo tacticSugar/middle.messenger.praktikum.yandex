@@ -1,21 +1,17 @@
+import { Block } from '../../utils/core/Block';
+import { renderDOM } from '../../utils/core/renderDOM';
+import { modAvatarCardTemplate } from './mod-avatar-card.template';
+
 export class ModAvatarCard extends Block<ModAvatarCardProps> {
   constructor(props: ModAvatarCardProps) {
     super('div', props);
   }
 
   render() {
-    const { title, formMethod, formAction, textField, button } = this.props;
-    return this.compile(modAvatarCardTemplate);
+    const { heading, newAvatar, changeAvatar } = this.props;
+    return this.compile(modAvatarCardTemplate, { heading, newAvatar, changeAvatar });
   }
 }
-
-const modAvatarCardProps: ModAvatarCardProps = {
-  avatar: {
-    img: 'avatar2',
-    name: 'Vova',
-    inProfile: true,
-  },
-};
 
 const test = new LoginCard(loginCardProps);
 
