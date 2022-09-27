@@ -1,12 +1,12 @@
 export const loginCardTemplate = `
 .login-card
   .login-card__title
-    != heading
+    != logHeading
     form(class="login-card__form")
       section.login-card__details
         .login-card__login-details_type_nickname
-          != nickname
+          != logNickname
         .login-card__login-details_type_password
-          != password
-        != auth
-        != noacc`;
+          != logPassword
+        != logBtnAuth
+        != logBtnNoacc`;

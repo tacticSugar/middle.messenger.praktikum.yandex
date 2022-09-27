@@ -1,6 +1,7 @@
 import { Block } from '../../utils/core/Block';
-import { renderDOM } from '../../utils/core/renderDOM';
 import { registrationCardTemplate } from './registration-card.template';
+import { RegistrationCardProps } from './registration-card-types';
+import './registration-card.scss';
 
 export class RegistrationCard extends Block<RegistrationCardProps> {
   constructor(props: RegistrationCardProps) {
@@ -9,7 +10,8 @@ export class RegistrationCard extends Block<RegistrationCardProps> {
 
   render() {
     const {
-      regLogin,
+      regHeading,
+      regEmail,
       regNickname,
       regName,
       regSurname,
@@ -18,10 +20,9 @@ export class RegistrationCard extends Block<RegistrationCardProps> {
       regPasswordAgain,
       regBtnSubmit,
       regBtnEnter,
-      regHeading,
     } = this.props;
     return this.compile(registrationCardTemplate, {
-      regLogin,
+      regEmail,
       regNickname,
       regName,
       regSurname,
@@ -34,15 +35,3 @@ export class RegistrationCard extends Block<RegistrationCardProps> {
     });
   }
 }
-
-const profileCardProps: RegistrationCardProps = {
-  avatar: {
-    img: 'avatar2',
-    name: 'Vova',
-    inProfile: true,
-  },
-};
-
-const test = new LoginCard(profileCardProps);
-
-renderDOM('#app', test);

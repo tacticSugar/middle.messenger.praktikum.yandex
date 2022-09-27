@@ -5,7 +5,7 @@ export const chatTemplate = `
       != avatar
     .chat__main
       .chat__name
-        span= chatName
+        != heading
       .chat__message
         span Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message Message
     .chat__numbers

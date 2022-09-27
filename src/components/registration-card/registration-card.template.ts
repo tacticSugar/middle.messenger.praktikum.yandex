@@ -4,7 +4,7 @@ export const registrationCardTemplate = `
     != regHeading
     form(class="registration-card__form")
       section.registration-card__details
-        != regLogin
+        != regEmail
         != regNickname
         != regName
         != regSurname

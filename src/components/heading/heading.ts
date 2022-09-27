@@ -1,8 +1,7 @@
 import { Block } from '../../utils/core/Block';
-import { renderDOM } from '../../utils/core/renderDOM';
-import { computeHeadingAttributes } from './heading-helpers';
 import { HeadingProps } from './heading-types';
 import { headingTemplate } from './heading.template';
+import './heading.scss';
 
 export class Heading extends Block<HeadingProps> {
   constructor(props: HeadingProps) {
@@ -15,12 +14,3 @@ export class Heading extends Block<HeadingProps> {
     return this.compile(headingTemplate, { title, level, levelMod });
   }
 }
-
-const headingProps: HeadingProps = {
-  title: 'hiQqQQQQQ',
-  level: 'h1',
-};
-
-const chat = new Heading(headingProps);
-
-renderDOM('#app', chat);

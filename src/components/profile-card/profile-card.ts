@@ -1,6 +1,7 @@
-import { profileCardTemplate } from './profile-card.template';
 import { Block } from '../../utils/core/Block';
 import { renderDOM } from '../../utils/core/renderDOM';
+import { profileCardTemplate } from './profile-card.template';
+import './profile-card.scss';
 
 export class ProfileCard extends Block<ProfileCardProps> {
   constructor(props: ProfileCardProps) {
@@ -8,30 +9,27 @@ export class ProfileCard extends Block<ProfileCardProps> {
   }
 
   render() {
-    const { login, nickname, name, surname, telephone, changeData, changePassword, exit, testAva } =
-      this.props;
-    return this.compile(profileCardTemplate, {
-      login,
+    const {
+      testAva,
+      email,
       nickname,
       name,
       surname,
       telephone,
-      changeData,
-      changePassword,
-      exit,
+      btnChangeData,
+      btnChangePassword,
+      btnExit,
+    } = this.props;
+    return this.compile(profileCardTemplate, {
       testAva,
+      email,
+      nickname,
+      name,
+      surname,
+      telephone,
+      btnChangeData,
+      btnChangePassword,
+      btnExit,
     });
   }
 }
-
-const profileCardProps: ProfileCardProps = {
-  avatar: {
-    img: 'avatar2',
-    name: 'Vova',
-    inProfile: true,
-  },
-};
-
-const test = new LoginCard(profileCardProps);
-
-renderDOM('#app', test);
