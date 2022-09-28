@@ -10,8 +10,8 @@ export class Avatar extends Block<AvatarProps> {
   }
 
   render() {
-    const { img, name, inProfile } = this.props;
-    const avatarAttributes = computeAvatarAttributes({ inProfile, img });
+    const { imgSrc, name, inProfile } = this.props;
+    const avatarAttributes = computeAvatarAttributes({ inProfile, imgSrc });
     return this.compile(avatarTemplate, {
       name,
       avatarAttributes,

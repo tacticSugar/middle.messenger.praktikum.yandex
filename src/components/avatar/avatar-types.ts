@@ -1,6 +1,6 @@
 export type AvatarProps = {
   // events?: Record<string, any>;
-  img: string;
+  imgSrc: string;
   name: string;
   inProfile: boolean;
 };

@@ -1,16 +1,17 @@
 .registration-card {
   padding: 40px;
 
-  &__title {
+  &__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 10px;
   }
 
   &__details {
     display: flex;
     flex-direction: column;
-    row-gap: 2px;
+    row-gap: 5px;
     margin-top: 20px;
   }
 }

@@ -1,9 +1,8 @@
 import { Block } from '../../utils/core/Block';
 import { buttonTemplate } from './button.template';
-import { renderDOM } from '../../utils/core/renderDOM';
 import { ButtonProps } from './button-types';
-import { colorModifiers } from './button-consts';
 import { computeButtonTag, computeButtonAttributes } from './button-helpers';
+import { colorModifiers } from './button-consts';
 import './button.scss';
 
 export class Button extends Block<ButtonProps> {
@@ -30,10 +29,3 @@ export class Button extends Block<ButtonProps> {
     });
   }
 }
-const buttonProps: ButtonProps = {
-  withArrow: true,
-  type: 'submit',
-};
-const button = new Button(buttonProps);
-
-renderDOM('#app', button);

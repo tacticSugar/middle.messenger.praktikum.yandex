@@ -1,3 +1,3 @@
 export const profilePageTemplate = `
-.app-container
+.app__profile
   != profileCard`;

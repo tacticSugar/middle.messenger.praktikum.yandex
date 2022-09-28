@@ -6,7 +6,7 @@
     "start:parcel": "parcel ./src/pages/ui-page/index.pug --port 3000",
     "build": "parcel build ./src/pages/ui-page/index.pug",
     "start": "npm run build && node ./server.js",
-    "test": "parcel ./src/pages/messanger-page/messanger-page.pug --port 3000"
+    "test": "parcel ./src/pages/login-page/login-page.pug --port 3000"
   },
   "repository": {
     "type": "git",

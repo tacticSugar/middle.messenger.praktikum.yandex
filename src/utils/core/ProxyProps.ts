@@ -12,6 +12,7 @@ function ProxyProps(props: any) {
       if (prop.startsWith('_')) {
         throw new Error('Нет прав');
       }
+      const oldProps = { ...target };
       target[prop] = value;
       return true;
     },

@@ -1,4 +1,4 @@
 export const loginPageTemplate = `
-.app-container
+.app__login
   != loginCard
   != registrationCard`;

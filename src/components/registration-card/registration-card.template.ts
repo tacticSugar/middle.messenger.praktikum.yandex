@@ -1,6 +1,6 @@
 export const registrationCardTemplate = `
 .registration-card
-  .registration-card__title
+  .registration-card__container
     != regHeading
     form(class="registration-card__form")
       section.registration-card__details

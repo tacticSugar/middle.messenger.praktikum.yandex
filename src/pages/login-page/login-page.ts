@@ -6,6 +6,9 @@ import { TextField } from '../../components/text-field/text-field';
 import { Button } from '../../components/button/button';
 import { Heading } from '../../components/heading/heading';
 import { loginPageTemplate } from './login-page.template';
+import '../../styles/reset.scss';
+import '../../styles/main.scss';
+import isValidLogin from '../../utils/helpers/loginField';
 import './login-page.scss';
 
 export class LoginPage extends Block {
@@ -30,6 +33,8 @@ const loginPageProps: LoginPageProps = {
       type: 'text',
       name: 'login',
       autocomplete: 'off',
+      onFocus: (event) => console.log(isValidLogin(event.target.value)),
+      onBlur: (event) => isValidLogin(event.target.value),
     }),
     logPassword: new TextField({
       placeholder: 'Пароль',
@@ -44,7 +49,7 @@ const loginPageProps: LoginPageProps = {
     }),
     logBtnNoacc: new Button({
       innerText: 'Нет аккаунта?',
-      buttonStyle: 'gray',
+      buttonStyle: 'red',
       link: '../registration-page/registration-page',
     }),
   }),

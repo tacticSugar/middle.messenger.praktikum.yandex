@@ -1,5 +1,4 @@
 import { EventBus } from './EventBus';
-import { ProxyProps } from './ProxyProps';
 import { v4 as makeUUID } from 'uuid';
 import { compile as pugCompile } from 'pug';
 
@@ -23,7 +22,7 @@ export class Block<TProps extends BlockProps = {}> {
   protected _element: HTMLElement | undefined;
   protected _meta;
   protected eventBus: Function;
-  public props: TProps;
+  public props: Record<string, any>;
   protected children: Children;
   public id: string;
 
@@ -40,7 +39,7 @@ export class Block<TProps extends BlockProps = {}> {
     };
 
     this.id = makeUUID();
-    this.props = ProxyProps({ ...props, id: this.id });
+    this.props = this._makePropsProxy(props);
 
     this.eventBus = () => eventBus;
     this._registerEvents(eventBus);
@@ -126,6 +125,25 @@ export class Block<TProps extends BlockProps = {}> {
 
   getContent() {
     return this.element as HTMLElement;
+  }
+
+  private _makePropsProxy(props: Record<string, any>) {
+    return new Proxy(props as unknown as object, {
+      get(target: Record<string, unknown>, prop: string) {
+        const value = target[prop];
+        return typeof value === 'function' ? value.bind(target) : value;
+      },
+      set: (target: Record<string, unknown>, prop: string, value: unknown) => {
+        const oldProps = { ...target };
+        target[prop] = value;
+
+        this.eventBus().emit(Events.FLOW_CDU, oldProps, target);
+        return true;
+      },
+      deleteProperty() {
+        throw new Error('Нет доступа');
+      },
+    });
   }
 
   protected _createDocumentElement(tagName: string) {

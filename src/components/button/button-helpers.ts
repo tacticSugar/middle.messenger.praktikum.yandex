@@ -6,7 +6,10 @@ export function computeButtonTag(link?: string) {
   return 'button';
 }
 
-export function computeButtonAttributes({ link, buttonStyle }: Partial<ButtonProps>) {
+export function computeButtonAttributes({
+  link,
+  buttonStyle,
+}: Pick<ButtonProps, 'link' | 'buttonStyle'>) {
   const buttonTag = computeButtonTag(link);
   const buttonAttributes: ButtonAttributes = {
     a: {
