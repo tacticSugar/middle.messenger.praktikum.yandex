@@ -8,7 +8,31 @@ import './button.scss';
 export class Button extends Block<ButtonProps> {
   constructor(props: ButtonProps) {
     const tag = computeButtonTag(props.link);
-    super(tag, props);
+    super('div', {
+      ...props,
+      events: {
+        click: (event: Event) => {
+          event.preventDefault();
+          const target = event.target as HTMLElement;
+          const form = target.closest('form');
+          if (!form) {
+            return;
+          }
+          const pInTemplate: NodeListOf<HTMLParagraphElement> = form.querySelectorAll('.error');
+          for (const p of pInTemplate) {
+            if (p.style.display !== 'none') {
+              console.log('не все данные валидны!');
+              return;
+            }
+          }
+          const inputsInTemplate: NodeListOf<HTMLInputElement> =
+            form.querySelectorAll('.text-field__input');
+          for (const input of inputsInTemplate) {
+            console.log(input.value);
+          }
+        },
+      },
+    });
   }
 
   render() {

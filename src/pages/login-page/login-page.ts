@@ -10,44 +10,11 @@ import '../../styles/reset.scss';
 import '../../styles/main.scss';
 import isValidLogin from '../../utils/helpers/loginField';
 import './login-page.scss';
-
-type ErrorElem = {
-  name: 'login' | 'password';
-  isError: boolean;
-  errorMessage: string;
-};
+import isValidPassword from '../../utils/helpers/passwordField';
 
 export class LoginPage extends Block {
   constructor(props: LoginPageProps) {
     super('div', props);
-  }
-
-  errors: ErrorElem[] = [];
-
-  loginHandler(e: Event) {
-    if (e.target instanceof HTMLInputElement) {
-      const { value } = e.target;
-      const { error, errorText } = isValidLogin(value);
-      const index = this.errors.findIndex(({ name }) => name === 'login');
-      if (error) {
-        const errorObj: ErrorElem = { name: 'login', isError: error, errorMessage: errorText };
-        if (index >= 0) {
-          this.errors[index] = errorObj;
-        } else {
-          this.errors.push(errorObj);
-        }
-      } else {
-        this.errors = this.errors.filter(({ name }) => name !== 'login');
-      }
-    }
-    console.log(this.errors);
-  }
-
-  componentDidMount(): void {
-    const page = this.element;
-    const login = page?.querySelector('input[name="login"]');
-    login?.addEventListener('focus', this.loginHandler.bind(this));
-    login?.addEventListener('blur', this.loginHandler.bind(this));
   }
 
   render() {
@@ -67,14 +34,14 @@ const loginPageProps: LoginPageProps = {
       type: 'text',
       name: 'login',
       autocomplete: 'off',
-      // onFocus: (event) => console.log(isValidLogin(event.target.value)),
-      // onBlur: (event) => isValidLogin(event.target.value),
+      inputCheckType: 'login',
     }),
     logPassword: new TextField({
       placeholder: 'Пароль',
       type: 'password',
       name: 'password',
       autocomplete: 'on',
+      inputCheckType: 'password',
     }),
     logBtnAuth: new Button({
       innerText: 'Авторизироваться',
@@ -97,42 +64,49 @@ const loginPageProps: LoginPageProps = {
       type: 'email',
       name: 'email',
       autocomplete: 'on',
+      inputCheckType: 'email',
     }),
     regNickname: new TextField({
       placeholder: 'Логин',
       type: 'text',
       name: 'login',
       autocomplete: 'on',
+      inputCheckType: 'login',
     }),
     regName: new TextField({
       placeholder: 'Имя',
       type: 'text',
       name: 'name',
       autocomplete: 'on',
+      inputCheckType: 'name',
     }),
     regSurname: new TextField({
       placeholder: 'Фамилия',
       type: 'text',
       name: 'surname',
       autocomplete: 'on',
+      inputCheckType: 'name',
     }),
     regTelephone: new TextField({
-      placeholder: 'Телефон',
+      placeholder: 'Телефон: +7',
       type: 'text',
       name: 'telephone',
       autocomplete: 'on',
+      inputCheckType: 'phone',
     }),
     regPassword: new TextField({
       placeholder: 'Пароль',
       type: 'password',
       name: 'password',
       autocomplete: 'on',
+      inputCheckType: 'password',
     }),
     regPasswordAgain: new TextField({
       placeholder: 'Пароль еще раз',
       type: 'password',
-      name: 'password',
+      name: 'passwordAgain',
       autocomplete: 'on',
+      inputCheckType: 'password',
     }),
     regBtnSubmit: new Button({
       innerText: 'Зарегистрироваться',
