@@ -18,14 +18,7 @@ export class TextField extends Block<TextFieldProps> {
       placeholder,
       spellcheck: withSpellcheck,
     };
-    const result = this.compile(textFieldTemplate, { inputAttributes });
 
-    const inputArray = result.querySelectorAll('.text-field__input');
-    inputArray.forEach((input) => {
-      input.onfocus = onFocus;
-      input.onblur = onBlur;
-    });
-
-    return result;
+    return this.compile(textFieldTemplate, { inputAttributes });
   }
 }

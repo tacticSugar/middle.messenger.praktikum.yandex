@@ -57,18 +57,17 @@ export class Block<TProps extends BlockProps = {}> {
   init() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
-    this.eventBus().emit(Events.FLOW_RENDER);
+    this.eventBus().emit(Events.FLOW_CDM);
   }
 
   // поднимаем себя и всех детей
   private _componentDidMount() {
-    this.componentDidMount();
-
     Object.values(this.children).forEach((child) => {
       child.dispatchComponentDidMount();
     });
 
     this.eventBus().emit(Events.FLOW_RENDER);
+    this.componentDidMount();
   }
 
   componentDidMount() {}

@@ -11,9 +11,43 @@ import '../../styles/main.scss';
 import isValidLogin from '../../utils/helpers/loginField';
 import './login-page.scss';
 
+type ErrorElem = {
+  name: 'login' | 'password';
+  isError: boolean;
+  errorMessage: string;
+};
+
 export class LoginPage extends Block {
   constructor(props: LoginPageProps) {
     super('div', props);
+  }
+
+  errors: ErrorElem[] = [];
+
+  loginHandler(e: Event) {
+    if (e.target instanceof HTMLInputElement) {
+      const { value } = e.target;
+      const { error, errorText } = isValidLogin(value);
+      const index = this.errors.findIndex(({ name }) => name === 'login');
+      if (error) {
+        const errorObj: ErrorElem = { name: 'login', isError: error, errorMessage: errorText };
+        if (index >= 0) {
+          this.errors[index] = errorObj;
+        } else {
+          this.errors.push(errorObj);
+        }
+      } else {
+        this.errors = this.errors.filter(({ name }) => name !== 'login');
+      }
+    }
+    console.log(this.errors);
+  }
+
+  componentDidMount(): void {
+    const page = this.element;
+    const login = page?.querySelector('input[name="login"]');
+    login?.addEventListener('focus', this.loginHandler.bind(this));
+    login?.addEventListener('blur', this.loginHandler.bind(this));
   }
 
   render() {
@@ -33,8 +67,8 @@ const loginPageProps: LoginPageProps = {
       type: 'text',
       name: 'login',
       autocomplete: 'off',
-      onFocus: (event) => console.log(isValidLogin(event.target.value)),
-      onBlur: (event) => isValidLogin(event.target.value),
+      // onFocus: (event) => console.log(isValidLogin(event.target.value)),
+      // onBlur: (event) => isValidLogin(event.target.value),
     }),
     logPassword: new TextField({
       placeholder: 'Пароль',
