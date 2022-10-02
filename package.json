@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:parcel": "parcel ./src/pages/ui-page/index.pug --port 3000",
-    "build": "parcel build ./src/pages/ui-page/index.pug",
+    "start:parcel": "parcel ./src/pages/index.pug --port 3000",
+    "build": "parcel build ./src/pages/index.pug",
     "start": "npm run build && node ./server.js",
     "test": "parcel ./src/pages/index.pug --port 3000"
   },
