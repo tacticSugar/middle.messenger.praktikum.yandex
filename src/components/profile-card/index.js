@@ -1,5 +1,0 @@
-import '../avatar/index'
-import '../heading/index'
-import '../text-field/index'
-import '../button/index'
-import './profile-card.scss'

@@ -5,4 +5,5 @@ export type TextFieldProps = {
   name?: string;
   autocomplete?: 'off' | 'on';
   withSpellcheck?: boolean;
+  disabled?: boolean;
 };

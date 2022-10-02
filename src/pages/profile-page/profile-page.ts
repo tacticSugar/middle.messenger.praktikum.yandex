@@ -21,39 +21,44 @@ export class ProfilePage extends Block {
 const profilePageProps: ProfilePageProps = {
   profileCard: new ProfileCard({
     testAva: new Avatar({
-      img: avatarimg,
+      imgSrc: avatarimg,
       name: 'Vova',
       inProfile: true,
     }),
     email: new TextField({
-      placeholder: 'Почта',
+      placeholder: 'test@ya.ru',
       type: 'email',
       name: 'email',
       autocomplete: 'on',
+      disabled: true,
     }),
     nickname: new TextField({
-      placeholder: 'Логин',
+      placeholder: 'Login',
       type: 'text',
       name: 'login',
       autocomplete: 'on',
+      disabled: true,
     }),
     name: new TextField({
-      placeholder: 'Имя',
+      placeholder: 'Владимир',
       type: 'text',
       name: 'name',
       autocomplete: 'on',
+      disabled: true,
     }),
     surname: new TextField({
-      placeholder: 'Фамилия',
+      placeholder: 'Балаян',
       type: 'text',
       name: 'surname',
       autocomplete: 'on',
+      disabled: true,
     }),
     telephone: new TextField({
-      placeholder: 'Телефон',
+      placeholder: '+79999999999',
       type: 'text',
       name: 'telephone',
       autocomplete: 'on',
+      disabled: true,
     }),
     btnChangeData: new Button({
       innerText: 'Изменить данные',

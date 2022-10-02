@@ -9,6 +9,8 @@ import { Chat } from '../../components/chat/chat';
 import { messangerPageTemplate } from './messanger-page.template';
 import avatarimg from '../../components/avatar/imgs/avatar.jpg';
 import { Heading } from '../../components/heading/heading';
+import '../../styles/reset.scss';
+import '../../styles/main.scss';
 import './messanger-page.scss';
 
 export class MessangerPage extends Block {
@@ -40,7 +42,7 @@ const messangerPageProps: MessangerPageProps = {
         level: 'h3',
       }),
       avatar: new Avatar({
-        img: avatarimg,
+        imgSrc: avatarimg,
         name: 'Vova',
         inProfile: false,
       }),
@@ -52,14 +54,15 @@ const messangerPageProps: MessangerPageProps = {
       level: 'h3',
     }),
     testAva: new Avatar({
-      img: avatarimg,
+      imgSrc: avatarimg,
       name: 'Vova',
       inProfile: false,
     }),
     enterMessage: new TextField({
       placeholder: 'Введите сообщение',
       type: 'text',
-      name: 'enterMessage',
+      name: 'message',
+      inputCheckType: 'chat',
     }),
     btnSendMessage: new Button({
       buttonStyle: 'red',

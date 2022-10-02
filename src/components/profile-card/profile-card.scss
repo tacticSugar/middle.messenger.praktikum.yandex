@@ -1,8 +1,9 @@
 .profile-card {
   padding: 40px;
-  &__title {
+  &__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 10px;
   }
 
@@ -10,7 +11,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    row-gap: 2px;
+    row-gap: 5px;
     margin-top: 20px;
+    & > button {
+      margin-top: 20px;
+    }
   }
 }

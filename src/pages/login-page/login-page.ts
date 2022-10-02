@@ -8,9 +8,7 @@ import { Heading } from '../../components/heading/heading';
 import { loginPageTemplate } from './login-page.template';
 import '../../styles/reset.scss';
 import '../../styles/main.scss';
-import isValidLogin from '../../utils/helpers/loginField';
 import './login-page.scss';
-import isValidPassword from '../../utils/helpers/passwordField';
 
 export class LoginPage extends Block {
   constructor(props: LoginPageProps) {
@@ -24,6 +22,10 @@ export class LoginPage extends Block {
 }
 
 const loginPageProps: LoginPageProps = {
+  // nav: {
+  //   msngr: 'messanger-page.html',
+  //   prof: 'profile-page.html',
+  // },
   loginCard: new LoginCard({
     logHeading: new Heading({
       title: 'Войти',

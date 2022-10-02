@@ -7,48 +7,46 @@ import checkError from '../../utils/helpers/handlerError';
 export class TextField extends Block<TextFieldProps> {
   constructor(props: TextFieldProps) {
     super('div', props);
-    {
-      const el = this._element.querySelector('input');
-      if (!el) {
+
+    const el = this.getContent().querySelector('input');
+    if (!el) {
+      return;
+    }
+    el.addEventListener('focus', () => {
+      const errorElement = this._element.querySelector('p');
+      if (!errorElement) {
         return;
       }
-      el.addEventListener('focus', () => {
-        const errorElement = this._element.querySelector('p');
-        if (!errorElement) {
-          return;
-        }
-        errorElement.style.display = 'none';
-      });
+      errorElement.style.display = 'none';
+    });
 
-      el.addEventListener('blur', () => {
-        if (!this.getContent()) {
+    el.addEventListener('blur', () => {
+      if (!this.getContent()) {
+        return;
+      }
+
+      const content = this.getContent().querySelector('input');
+      if (!content) {
+        return;
+      }
+      let ans: { errorText: string; error: boolean } = checkError(
+        content.value,
+        this.props.inputCheckType
+      );
+      const { error, errorText } = ans;
+      if (error) {
+        const p = this._element.querySelector('p');
+        if (!p) {
           return;
         }
-        const content = this.getContent().querySelector('input');
-        if (!content) {
-          return;
-        }
-        let ans: { errorText: string; error: boolean } = checkError(
-          content.value,
-          this.props.inputCheckType
-        );
-        const error = ans.error;
-        const errorText = ans.errorText;
-        if (error) {
-          const p = this._element.querySelector('p');
-          if (!p) {
-            return;
-          }
-          p.style.display = 'block';
-          p.innerText = errorText;
-        }
-      });
-    }
+        p.style.display = 'block';
+        p.innerText = errorText;
+      }
+    });
   }
 
   render() {
-    const { type, placeholder, name, autocomplete, withSpellcheck } = this.props;
-
+    const { type, placeholder, name, autocomplete, withSpellcheck, disabled } = this.props;
     const inputAttributes = {
       class: ['text-field__input'],
       type,
@@ -56,6 +54,7 @@ export class TextField extends Block<TextFieldProps> {
       autocomplete,
       placeholder,
       spellcheck: withSpellcheck,
+      disabled,
     };
     const result = this.compile(textFieldTemplate, { inputAttributes });
     return result;
