@@ -1,9 +1,0 @@
-[
-  { "url": "../login-page/login-page.pug", "name": "login page" },
-  {
-    "url": "../registration-page/registration-page.pug",
-    "name": "registration page"
-  },
-  { "url": "../profile-page/profile-page.pug", "name": "profile page" },
-  { "url": "../link-test.pug", "name": "chats page" }
-]

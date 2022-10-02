@@ -1,72 +1,17 @@
-extends ../../layouts/ui.pug
-include ../../components/profile-card/profile-card.pug
-
 block variables
-  - const title = "Profile"
 
-block content
-  section.profile
-    .profile__container
-      .profile__profile-card
-        +profile-card({
-          formAction: 'profile-page',
-          textField: {
-            name: {
-              placeholder: 'Имя',
-              type: 'text',
-              name: 'name',
-              autocomplete: 'on',
-            },
-            surname: {
-              placeholder: 'Фамилия',
-              type: 'text',
-              name: 'surname',
-              autocomplete: 'on',
-            },
-            login: {
-              placeholder: 'Почта',
-              type: 'email',
-              name: 'email',
-              autocomplete: 'on',
-            },
-            nickname: {
-              placeholder: 'Логин',
-              type: 'text',
-              name: 'login',
-              autocomplete: 'on',
-            },
-            telephone: {
-              placeholder: 'Tel:+7',
-              type: 'tel',
-              name: 'tel',
-              autocomplete: 'on',
-            },
-          },
-          button: {
-            changeData: {
-              buttonName: 'Изменить данные',
-              type: 'submit',
-              textColor: 'gray',
-              link: "../link-test"
-            },
-            changePassword: {
-              buttonName: 'Изменить пароль',
-              type: 'submit',
-              textColor: 'gray',
-              link: "../link-test",
-            },
-            exit: {
-              buttonName: 'Выйти',
-              type: 'submit',
-              textColor: 'red',
-              link: "../link-test",
-            },
-          },
-          avatar: {
-            testAva: {
-              img: "avatar",
-              name: "Vladimir",
-              inProfile: true,
-            },
-          },
-        },)
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet")
+
+    title #{title || "My chat"}
+  body
+    #app
+    script(src="./profile-page.ts" type="module")

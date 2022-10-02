@@ -1,40 +1,17 @@
-extends ../../layouts/ui.pug
-include ../../components/login-card/login-card.pug
-
 block variables
-  - const title = "Login"
 
-block content
-  section.login
-    .login__container
-      .login__login-card
-        +login-card({
-          title: "Вход",
-          formAction: "registration-page",
-          textField: {
-            password: {
-              placeholder: "Пароль",
-              type: "password",
-              name: "password",
-              autocomplete: "on"
-            },
-            nickname: {
-              placeholder: "Логин",
-              type: "text",
-              name: "login",
-              autocomplete: "off"
-            },
-          },
-          button: {
-            auth: {
-              buttonName: "Авторизироваться",
-              type: "submit",
-              textColor: "gray",
-            },
-            noacc: {
-              buttonName: "Нет аккаунта?",
-              textColor: "gray",
-              link: "../registration-page/registration-page",
-            },
-          },
-        })
+doctype html
+html(lang="ru")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet")
+
+    title #{title || "My chat"}
+  body
+    #app
+    script(src="./login-page.ts" type="module")

@@ -20,6 +20,5 @@ mixin mod-avatar-card(params = {})
         method=`${formMethod}`,
         action=`./${formAction}.html`
       )
-        //- .mod-avatar-card__text Выберите файл с компьютера
         +text-field(textField.newAvatar)
         +button(button.changeAvatar)
