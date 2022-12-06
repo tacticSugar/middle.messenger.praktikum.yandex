@@ -1,10 +1,13 @@
 import { Block } from '../../utils/core/Block';
 import { renderDOM } from '../../utils/core/renderDOM';
+
 import { TextField } from '../../components/text-field/text-field';
 import { Button } from '../../components/button/button';
 import { Avatar } from '../../components/avatar/avatar';
 import { ProfileCard } from '../../components/profile-card/profile-card';
+
 import { profilePageTemplate } from './profile-page.template';
+
 import avatarimg from '../../components/avatar/imgs/avatar.jpg';
 
 export class ProfilePage extends Block {

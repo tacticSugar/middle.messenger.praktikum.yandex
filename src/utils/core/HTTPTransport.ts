@@ -22,6 +22,9 @@ function queryStringify(data: Record<string, string>) {
 
 class HTTPTransport {
   get(url: string, options: OptionsWithoutMethod = {}) {
+    if (method === Methods.GET) {
+      url += queryStringify(data);
+    }
     return this.request(url, { ...options, method: Methods.GET });
   }
 
@@ -39,10 +42,6 @@ class HTTPTransport {
 
   request(url: string, options: Options = { method: Methods.GET }): Promise<XMLHttpRequest> {
     let { data, method, headers } = options;
-
-    if (method === Methods.GET) {
-      url += queryStringify(data);
-    }
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();

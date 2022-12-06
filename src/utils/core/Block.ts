@@ -4,7 +4,7 @@ import { compile } from 'pug';
 import ProxyProps from './ProxyProps';
 
 interface IChildren {
-  [key: string]: Block;
+  [key: string]: Block<TProps>; // Исправлено после 2 спринта
 }
 
 export type TProps = Record<string, any>;
@@ -16,7 +16,7 @@ enum Events {
   FLOW_RENDER = 'flow:render',
 }
 
-export class Block {
+export class Block<TProps extends {}> {
   protected _element: HTMLElement;
   protected _meta;
   protected eventBus: Function;
@@ -24,7 +24,6 @@ export class Block {
   protected children: IChildren;
   public id: string | null = null;
 
-  // создаём детей, пропсы, запускаем событие INIT
   constructor(tagName: string = 'div', propsAndChildren: TProps = {}) {
     const eventBus = new EventBus();
 
@@ -45,22 +44,20 @@ export class Block {
     eventBus.emit(Events.INIT, {});
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Events.INIT, this.init.bind(this));
     eventBus.on(Events.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Events.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Events.FLOW_RENDER, this._render.bind(this));
   }
 
-  // создаём _element и объявляем FLOW_RENDER
   init() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName) as HTMLElement;
     this.eventBus().emit(Events.FLOW_RENDER);
   }
 
-  // поднимаем себя и всех детей
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
 
     Object.values(this.children).forEach((child) => {
@@ -76,7 +73,7 @@ export class Block {
     this.eventBus().emit(Events.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: TProps, newProps: TProps) {
+  private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -103,9 +100,8 @@ export class Block {
     return this._element;
   }
 
-  // обновляем события + рендерим элемент заново
-  _render() {
-    const block = this.render(); // render теперь возвращает DocumentFragment
+  private _render() {
+    const block = this.render();
     this._delEvents();
 
     const newElement = (block as unknown as HTMLElement).firstElementChild;
@@ -117,7 +113,6 @@ export class Block {
     this._addEvents();
   }
 
-  // переопределить у детей
   render() {
     return '';
   }
@@ -126,8 +121,7 @@ export class Block {
     return this.element;
   }
 
-  _createDocumentElement(tagName: string) {
-    // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
+  private _createDocumentElement(tagName: string) {
     const element = document.createElement(tagName);
     if (this.props['withInternalID'] === true) {
       if (!this.id) {
@@ -139,15 +133,14 @@ export class Block {
   }
 
   show() {
-    this.getContent().style.display = 'flex'; // block по умолчанию
+    this.getContent().style.display = 'flex';
   }
 
   hide() {
     this.getContent().style.display = 'none';
   }
 
-  // работа с событиями
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -155,7 +148,7 @@ export class Block {
     });
   }
 
-  _delEvents() {
+  private _delEvents() {
     const { events = {} } = this.props;
 
     Object.keys(events).forEach((eventName) => {
@@ -163,7 +156,7 @@ export class Block {
     });
   }
 
-  _getChildren(propsAndChildren: TProps) {
+  private _getChildren(propsAndChildren: TProps) {
     const children: Record<string, any> = {};
     const props: Record<string, any> = {};
 
