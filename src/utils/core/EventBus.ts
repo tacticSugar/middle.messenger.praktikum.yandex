@@ -14,13 +14,15 @@ export class EventBus {
 
   off(event: string, callback: Function): void {
     if (!this.listeners[event]) {
-      throw new Error(`События ${event} не существует`);
+      throw new Error(`события ${event} не существует`);
     }
 
-    this.listeners[event] = this.listeners[event].filter((listener) => listener !== callback);
+    this.listeners[event] = this.listeners[event].filter(
+      (listener) => listener !== callback
+    );
   }
 
-  emit(event: string, ...args: Record<string, any>) {
+  emit(event: string, args: Record<string, any>) {
     if (!this.listeners[event]) {
       throw new Error(`события ${event} не существует`);
     }
