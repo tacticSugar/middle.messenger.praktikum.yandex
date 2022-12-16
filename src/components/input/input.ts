@@ -64,7 +64,7 @@ export class Input extends Block<InputProps> {
 
   render() {
     return this.compile(inputTemplate, {
-      ...this.props,
+      ...this.props, // все в input.pug
       idInput: this.id,
     });
   }

@@ -1,0 +1,62 @@
+.main_page {
+  display: flex;
+  height: 100vh;
+}
+
+.user-nav {
+  overflow: auto;
+  flex-basis: 25%;
+  border-right: solid 2px linear-gradient(to top, #ffffff, #5df9ee, #79d0d0, #ffffff) 1% 100%;
+}
+
+.user-bar {
+  border-bottom: solid 2px linear-gradient(to top, #ffffff, #5df9ee, #79d0d0, #ffffff) 1% 100%;
+}
+
+.tools {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: rgba(0, 0, 0, 0.51);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.user-bar input {
+  margin: 10px;
+  border-radius: 17px;
+  border: none;
+  background-color: #fdfdfd;
+  text-align: center;
+  width: 80%;
+  min-height: 30px;
+}
+
+.start-talk {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  margin: auto;
+  font-size: 40px;
+  line-height: 29px;
+}
+
+.add-chat {
+  cursor: pointer;
+  background-color: white;
+  background-image: url('../../static/img/add.svg');
+  background-repeat: no-repeat;
+  height: 40px;
+  width: 40px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: row;
+}

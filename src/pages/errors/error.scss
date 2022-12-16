@@ -1,0 +1,34 @@
+.line-error-oops {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-size: 48px;
+}
+
+.line-error-sorry {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-size: 36px;
+}
+
+.line-error-back {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-size: 24px;
+  color: blue;
+  text-decoration: none;
+}
+
+.line-error-number {
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-size: 80px;
+}
+
+div.inside-error {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}

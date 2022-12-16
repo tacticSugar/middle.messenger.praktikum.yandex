@@ -1,5 +1,5 @@
 import { Block } from '../../utils/core/Block';
-import './submit-button.scss';
+import './buttonSubmit.scss';
 import btnSubTemplate from './buttonSubmit.pug';
 
 type SubmitButtonProps = {

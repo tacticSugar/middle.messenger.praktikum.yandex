@@ -1,9 +1,18 @@
+const path = require('path');
 const express = require('express');
+
+const PORT = 3000;
 const app = express();
-const port = process.env.PORT || 3000;
 
-app.use('/', express.static('dist'));
+app.use(express.static(path.join(__dirname, 'dist')));
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+app.use('/*', (req, res) => {
+  res.redirect('/');
 });
+
+app.get('/', function (req, res) {
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200).sendFile(__dirname + '/src/index.html');
+});
+
+app.listen(PORT, () => console.log(`App is ready on port ${PORT}`));

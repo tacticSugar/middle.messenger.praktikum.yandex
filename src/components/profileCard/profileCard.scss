@@ -2,8 +2,7 @@
   cursor: pointer;
   display: flex;
   justify-content: space-around;
-  border-bottom: solid 1px
-    linear-gradient(to top, #ffffff, #5df9ee, #79d0d0, #ffffff) 1% 100%;
+  border-bottom: solid 1px linear-gradient(to top, #ffffff, #5df9ee, #79d0d0, #ffffff) 1% 100%;
   padding: 10px;
   &:hover {
     background-color: lightgrey;
@@ -27,7 +26,12 @@
 }
 
 .to-user {
-  .text;
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   color: black;
   text-decoration: none;
   font-size: 30px;
@@ -36,7 +40,12 @@
 }
 
 .last-word {
-  .text;
+  text-align: center;
+  font-family: Montserrat, Areal, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
   display: block;
   font-size: 16px;
   line-height: 19px;
