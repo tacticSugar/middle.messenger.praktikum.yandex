@@ -22,7 +22,7 @@ type ProfileProps = {
 
 class ProfilePage extends Block<ProfileProps> {
   constructor(props: ProfileProps) {
-    console.log('create profile page');
+    // console.log('create profile page');
     super('div', {
       ...props,
       btnBack: new ButtonBack(),

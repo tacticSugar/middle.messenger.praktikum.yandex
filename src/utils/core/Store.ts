@@ -1,8 +1,8 @@
-import { set } from "../../helpers/mydash/set";
-import { EventBus } from "./EventBus";
+import { set } from '../../helpers/mydash/set';
+import { EventBus } from './EventBus';
 
 export enum StoreEvents {
-  Updated = "updated",
+  Updated = 'updated',
 }
 
 class Store extends EventBus {
@@ -10,9 +10,9 @@ class Store extends EventBus {
 
   constructor() {
     super();
-    console.log("создаём store");
+    // console.log("создаём store");
     this.on(StoreEvents.Updated, () => {
-      console.log("изменили store");
+      // console.log("изменили store");
     });
   }
 
@@ -21,7 +21,7 @@ class Store extends EventBus {
   }
 
   public setState(path: string, value: unknown) {
-    console.log("setting store", this.getState());
+    // console.log("setting store", this.getState());
     set(this.state, path, value);
     this.emit(StoreEvents.Updated, {});
   }

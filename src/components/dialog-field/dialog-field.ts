@@ -47,7 +47,7 @@ class DialogField extends Block<DialogFieldProps> {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return this.compile(dialogTemplate, this.props);
   }
 }
@@ -55,7 +55,7 @@ class DialogField extends Block<DialogFieldProps> {
 function mapToDialog(store: any) {
   let isDialog: boolean = false;
   if (store.currentChat) {
-    console.log(store.currentChat);
+    // console.log(store.currentChat);
     isDialog = true;
   }
   let userId = null;

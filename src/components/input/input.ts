@@ -27,6 +27,7 @@ export class Input extends Block<InputProps> {
       if (!el) {
         return;
       }
+
       el.addEventListener('focus', () => {
         const errorElement = this._element?.querySelector('p');
         if (!errorElement) {

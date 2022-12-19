@@ -1,7 +1,7 @@
-import { EventBus } from "./EventBus";
-import { ProxyProps } from "./ProxyProps";
-import { v4 as makeUUID } from "uuid";
-import { compile } from "pug";
+import { EventBus } from './EventBus';
+import { ProxyProps } from './ProxyProps';
+import { v4 as makeUUID } from 'uuid';
+import { compile } from 'pug';
 
 interface IChildren {
   [key: string]: Block<TProps>;
@@ -10,10 +10,10 @@ interface IChildren {
 export type TProps = Record<string, any>;
 
 enum Events {
-  INIT = "init",
-  FLOW_CDM = "flow:component-did-mount",
-  FLOW_CDU = "flow:component-did-update",
-  FLOW_RENDER = "flow:render",
+  INIT = 'init',
+  FLOW_CDM = 'flow:component-did-mount',
+  FLOW_CDU = 'flow:component-did-update',
+  FLOW_RENDER = 'flow:render',
 }
 
 export abstract class Block<TProps extends {}> {
@@ -25,7 +25,7 @@ export abstract class Block<TProps extends {}> {
   public id: string | null = null;
 
   // создаём детей, пропсы, запускаем событие INIT
-  constructor(tagName: string = "div", propsAndChildren: TProps) {
+  constructor(tagName: string = 'div', propsAndChildren: TProps) {
     const eventBus = new EventBus();
 
     const { children, props } = this._getChildren(propsAndChildren);
@@ -119,7 +119,7 @@ export abstract class Block<TProps extends {}> {
 
   // переопределить у детей
   render() {
-    return "";
+    return '';
   }
 
   getContent() {
@@ -129,21 +129,21 @@ export abstract class Block<TProps extends {}> {
   protected _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const element = document.createElement(tagName);
-    if (this.props["withInternalID"] === true) {
+    if (this.props['withInternalID'] === true) {
       if (!this.id) {
         return;
       }
-      element.setAttribute("data-id", this.id);
+      element.setAttribute('data-id', this.id);
     }
     return element;
   }
 
   show(): void {
-    this.getContent().style.display = "flex"; // block по умолчанию
+    this.getContent().style.display = 'flex'; // block по умолчанию
   }
 
   hide(): void {
-    this.getContent().style.display = "none";
+    this.getContent().style.display = 'none';
   }
 
   // работа с событиями
@@ -187,18 +187,16 @@ export abstract class Block<TProps extends {}> {
       propsAndStubs[key] = compile(`div(data-id="${child.id}")`)();
     });
 
-    const fragment = this._createDocumentElement("template");
+    const fragment = this._createDocumentElement('template');
 
     if (!fragment) {
-      console.log("return with nothing");
+      // console.log("return with nothing");
       return;
     }
     fragment.innerHTML = compile(template)(propsAndStubs);
 
     Object.values(this.children).forEach((child) => {
-      const stub = (fragment as any).content.querySelector(
-        `[data-id="${child.id}"]`
-      );
+      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
 
       stub.replaceWith(child.getContent());
     });

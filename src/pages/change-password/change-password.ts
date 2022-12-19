@@ -35,14 +35,14 @@ class ChangePasswordPage extends Block<ChangePasswordProps> {
               form.querySelectorAll('.input-error');
             for (const p of pInTemplate) {
               if (p.style.display !== 'none') {
-                console.log('не все данные валидны!');
+                // console.log('не все данные валидны!');
                 return;
               }
             }
             const inputsInTemplate: NodeListOf<HTMLInputElement> =
               form.querySelectorAll('.inlineText');
             for (const input of inputsInTemplate) {
-              console.log(input.value);
+              // console.log(input.value);
             }
             userController.changePassword({
               oldPassword: (form.querySelector('[name="oldPassword"]') as HTMLInputElement)?.value,

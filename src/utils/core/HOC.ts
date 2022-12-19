@@ -1,6 +1,6 @@
-import { TProps } from "./Block";
-import { StoreEvents, store } from "./Store";
-import { isEqual } from "../../helpers/mydash/isEqual";
+import { TProps } from './Block';
+import { StoreEvents, store } from './Store';
+import { isEqual } from '../../helpers/mydash/isEqual';
 
 function connect(mapStateToProps: (state: TProps) => any) {
   return function (Component: any) {
@@ -11,9 +11,9 @@ function connect(mapStateToProps: (state: TProps) => any) {
         super({ ...props, ...state });
 
         // подписываемся на событие
-        console.log("подписались на событие", StoreEvents.Updated);
+        // console.log("подписались на событие", StoreEvents.Updated);
         store.on(StoreEvents.Updated, () => {
-          console.log("подписываемся на событие,", state);
+          // console.log("подписываемся на событие,", state);
           const newState = mapStateToProps(store.getState());
           if (!isEqual(newState, state)) {
             // вызываем обновление компонента, передав данные из хранилища

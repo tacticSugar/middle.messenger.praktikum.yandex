@@ -64,9 +64,9 @@ export class ModalAddChat extends Block<ModalAddChatProps> {
                     await chatsApi.addChatAva(form);
                   });
                   await chatsController.getAllChats().then((resp) => {
-                    console.log('!!!setted new chats:', resp.response);
+                    // console.log('!!!setted new chats:', resp.response);
                     store.setState('chats', resp.response);
-                    console.log('store:', store.getState());
+                    // console.log('store:', store.getState());
                   });
                   document.querySelector('.modal')?.classList.remove('active');
                 } else {

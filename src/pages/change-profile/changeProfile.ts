@@ -54,14 +54,14 @@ class ChangeProfilePage extends Block<ChangeProfileProps> {
               form.querySelectorAll('.input-error');
             for (const p of pInTemplate) {
               if (p.style.display !== 'none') {
-                console.log('не все данные валидны!');
+                // console.log('не все данные валидны!');
                 return;
               }
             }
             const inputsInTemplate: NodeListOf<HTMLInputElement> =
               form.querySelectorAll('.inlineText');
             for (const input of inputsInTemplate) {
-              console.log(input.value);
+              // console.log(input.value);
             }
             userController.changeProfile({
               first_name: (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value,

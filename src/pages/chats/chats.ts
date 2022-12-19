@@ -61,7 +61,6 @@ class ChatsPage extends Block<ChatsProps> {
           // @ts-ignore
           const userCard = event.target.closest('.user-card');
           if (userCard) {
-            console.log('smtttt');
             const idChat: number = userCard.id;
             chatsController.getChatToken(idChat).then((resp) => {
               const token: string = resp.response.token;
@@ -82,7 +81,7 @@ class ChatsPage extends Block<ChatsProps> {
 
   compile(template: string, props: TProps) {
     this.props.cardList = [];
-    console.log(store.getState());
+    // console.log(store.getState());
     for (let user of store.getState().chats) {
       this.props.cardList.push(new ContactCard(user));
     }
@@ -106,7 +105,7 @@ class ChatsPage extends Block<ChatsProps> {
     if (!fragment) {
       return;
     }
-    console.log(fragment);
+    // console.log(fragment);
     fragment.innerHTML = compile(template)({
       ...propsAndStubs,
       chatList: readyListOfCards,
