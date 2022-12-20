@@ -1,3 +1,5 @@
+<a href='https://bucolic-paprenjak-cebd36.netlify.app/messenger'>LIVE DEMO OF CHAT</a>
+
 ## Общая информация
 
 В проекте использовался шаблонизатор pug, в качестве препроцессора css - scss
