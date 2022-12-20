@@ -1,4 +1,4 @@
-<a href='https://bucolic-paprenjak-cebd36.netlify.app/messenger'>LIVE DEMO OF CHAT</a>
+<a href='https://bucolic-paprenjak-cebd36.netlify.app'>LIVE DEMO OF CHAT</a>
 
 ## Общая информация
 
