@@ -24,6 +24,7 @@ export class Input extends Block<InputProps> {
     });
     {
       const el = this._element?.querySelector('input');
+      console.log(el);
       if (!el) {
         return;
       }
