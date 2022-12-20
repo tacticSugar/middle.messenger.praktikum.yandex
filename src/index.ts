@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 import { Router } from './utils/core/Router';
 import { ErrorPage } from './pages/errors/error';
 import { ProfilePage } from './pages/profile/profile';
