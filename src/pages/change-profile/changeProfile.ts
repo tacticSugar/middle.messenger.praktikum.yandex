@@ -1,12 +1,12 @@
-import './change-profile.scss';
-import changeProfTemplate from './change-profile.pug';
-import { Block } from '../../utils/core/Block';
-import { Input } from '../../components/input/input';
-import { SubmitButton } from '../../components/buttonSubmit/buttonSubmit';
-import { ButtonBack } from '../../components/buttonBack/buttonBack';
-import { userController } from '../../controllers/user-controller';
-import { connect } from '../../utils/core/HOC';
-import avatarDefault from '../../static/img/ava.png';
+import "./change-profile.less";
+import { template as changeProfTemplate } from "./change-profile.template";
+import { Block } from "../../utils/core/Block";
+import { Input } from "../../components/input/input";
+import { SubmitButton } from "../../components/submit-button/submit-button";
+import { ButtonBack } from "../../components/button-back/button-back";
+import { userController } from "../../controllers/user-controller";
+import { connect } from "../../utils/core/HOC";
+import avatarDefault from "../../static/img/ava.png";
 
 type ChangeProfileProps = {
   avatar: string;
@@ -20,11 +20,15 @@ type ChangeProfileProps = {
   sbmButtonImage: SubmitButton;
 };
 
-function fastInputInit(textLabel: string, inputName: string, inputCheckType: string) {
+function fastInputInit(
+  textLabel: string,
+  inputName: string,
+  inputCheckType: string
+) {
   return new Input({
     textLabel: textLabel,
-    inputClass: 'inlineText',
-    inputType: 'text',
+    inputClass: "inlineText",
+    inputType: "text",
     inputName: inputName,
     inputCheckType: inputCheckType,
   });
@@ -32,54 +36,65 @@ function fastInputInit(textLabel: string, inputName: string, inputCheckType: str
 
 class ChangeProfilePage extends Block<ChangeProfileProps> {
   constructor(props: ChangeProfileProps) {
-    super('div', {
+    super("div", {
       ...props,
       btnBack: new ButtonBack(),
-      inputFirstName: fastInputInit('короткое имя', 'first_name', 'name'),
-      inputSecondName: fastInputInit('полное имя', 'second_name', 'name'),
-      inputLogin: fastInputInit('логин', 'login', 'login'),
-      inputEmail: fastInputInit('почта', 'email', 'email'),
-      inputPhone: fastInputInit('телефон', 'phone', 'phone'),
+      inputFirstName: fastInputInit("короткое имя", "first_name", "name"),
+      inputSecondName: fastInputInit("полное имя", "second_name", "name"),
+      inputLogin: fastInputInit("логин", "login", "login"),
+      inputEmail: fastInputInit("почта", "email", "email"),
+      inputPhone: fastInputInit("телефон", "phone", "phone"),
       sbmButtonData: new SubmitButton({
-        text: 'внести изменения',
+        text: "внести изменения",
         events: {
           click: (event: Event) => {
             event.preventDefault();
             const target = event.target as HTMLElement;
-            const form = target.closest('form');
+            const form = target.closest("form");
             if (!form) {
               return;
             }
             const pInTemplate: NodeListOf<HTMLParagraphElement> =
-              form.querySelectorAll('.input-error');
+              form.querySelectorAll(".input-error");
             for (const p of pInTemplate) {
-              if (p.style.display !== 'none') {
-                // console.log('не все данные валидны!');
+              if (p.style.display !== "none") {
+                console.log("не все данные валидны!");
                 return;
               }
             }
             const inputsInTemplate: NodeListOf<HTMLInputElement> =
-              form.querySelectorAll('.inlineText');
+              form.querySelectorAll(".inlineText");
             for (const input of inputsInTemplate) {
-              // console.log(input.value);
+              console.log(input.value);
             }
             userController.changeProfile({
-              first_name: (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value,
-              second_name: (form.querySelector('[name="second_name"]') as HTMLInputElement)?.value,
-              login: (form.querySelector('[name="login"]') as HTMLInputElement)?.value,
-              email: (form.querySelector('[name="email"]') as HTMLInputElement)?.value,
-              phone: (form.querySelector('[name="phone"]') as HTMLInputElement)?.value,
-              display_name: (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value,
+              first_name: (
+                form.querySelector('[name="first_name"]') as HTMLInputElement
+              )?.value,
+              second_name: (
+                form.querySelector('[name="second_name"]') as HTMLInputElement
+              )?.value,
+              login: (form.querySelector('[name="login"]') as HTMLInputElement)
+                ?.value,
+              email: (form.querySelector('[name="email"]') as HTMLInputElement)
+                ?.value,
+              phone: (form.querySelector('[name="phone"]') as HTMLInputElement)
+                ?.value,
+              display_name: (
+                form.querySelector('[name="first_name"]') as HTMLInputElement
+              )?.value,
             });
           },
         },
       }),
       sbmButtonImage: new SubmitButton({
-        text: 'сохранить аватар',
+        text: "сохранить аватар",
         events: {
           click: (event: Event) => {
             event.preventDefault();
-            const formAvatar = document.querySelector('.max-height-form-ava') as HTMLFormElement;
+            const formAvatar = document.querySelector(
+              ".max-height-form-ava"
+            ) as HTMLFormElement;
             const form = new FormData(formAvatar);
             userController.changeAvatar(form);
           },
@@ -96,8 +111,7 @@ class ChangeProfilePage extends Block<ChangeProfileProps> {
 function mapChangeProfile(store: any) {
   let ava: string;
   if (store.user.avatar) {
-    // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
-    ava = 'https://ya-praktikum.tech/api/v2/resources/' + store.user.avatar;
+    ava = "https://ya-praktikum.tech/api/v2/resources/" + store.user.avatar;
   } else {
     ava = avatarDefault;
   }

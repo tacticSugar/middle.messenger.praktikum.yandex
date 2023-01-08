@@ -1,4 +1,4 @@
-import { BaseApi } from './base-api';
+import { BaseApi } from "./base-api";
 
 interface IUserData {
   first_name: string;
@@ -25,24 +25,24 @@ interface IChangeData {
 
 class UserApi extends BaseApi {
   constructor() {
-    super({ path: '/user' });
+    super({ path: "/user" });
   }
 
   public changeProfile(data: IChangeData) {
-    return this.put('/profile', {
+    return this.put("/profile", {
       data: JSON.stringify(data),
     });
   }
 
   public changeAva(data: FormData) {
-    // console.log(data);
-    return this.put('/profile/avatar', {
+    console.log(data);
+    return this.put("/profile/avatar", {
       data: data,
     });
   }
 
   public changePassword(data: IChangePassword) {
-    return this.put('/password', {
+    return this.put("/password", {
       data: JSON.stringify(data),
     });
   }

@@ -1,23 +1,22 @@
 {
   "env": {
-    "browser": true,
     "es6": true
   },
-  "extends": ["standard-with-typescript", "prettier"],
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "ignorePatterns": ["dist/**"],
-  "overrides": [],
-  "parserOptions": {
-    "project": "./tsconfig.json",
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
   "rules": {
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/restrict-template-expressions": 0,
-    "@typescript-eslint/consistent-type-definitions": 0,
-    "@typescript-eslint/strict-boolean-expressions": 0
+    "max-len": [2, 100],
+    "quotes": [2, "double"],
+    "getter-return": ["error", { "allowImplicit": true }],
+    "no-var": 2,
+    "no-multi-spaces": 2,
+    "no-multiple-empty-lines": 2,
+    "no-dupe-args": 2,
+    "no-compare-neg-zero": 1,
+    "for-direction": 1,
+    "no-use-before-define": 1,
+    "eqeqeq": [1, "always"]
   }
 }

@@ -1,4 +1,4 @@
-import HTTPTransport from '../utils/core/HTTPTransport';
+import { HTTPTransport } from "../utils/core/HTTPTransport";
 
 interface IHTTPTransport {
   path: string;
@@ -8,10 +8,10 @@ interface IHTTPTransport {
 
 type HTTPOption = Record<string, any>;
 
-const host = 'https://ya-praktikum.tech/api/v2';
+const host = "https://ya-praktikum.tech/api/v2";
 
 const defaultHeaders = {
-  'Content-type': 'application/json; charset=UTF-8',
+  "Content-type": "application/json; charset=UTF-8",
 };
 
 class BaseApi {
@@ -28,7 +28,7 @@ class BaseApi {
   }
 
   handleResponse(resp: XMLHttpRequest) {
-    if (resp.response === 'OK') {
+    if (resp.response === "OK") {
       return { ans: true };
     }
 
@@ -42,13 +42,16 @@ class BaseApi {
   getOptions(newOptions?: HTTPOption) {
     const options = newOptions || {};
     options.headers = newOptions?.headers || this.headers;
-    // console.log('options', options, options.headers)
+    console.log("options", options, options.headers);
     return options;
   }
 
   get(endpoint: string, options?: HTTPOption) {
     if (options) {
-      return this.transport.get(this.getFullPath(endpoint), this.getOptions(options));
+      return this.transport.get(
+        this.getFullPath(endpoint),
+        this.getOptions(options)
+      );
     } else {
       return this.transport.get(this.getFullPath(endpoint), this.getOptions());
     }
@@ -56,7 +59,10 @@ class BaseApi {
 
   post(endpoint: string, options?: HTTPOption) {
     if (options) {
-      return this.transport.post(this.getFullPath(endpoint), this.getOptions(options));
+      return this.transport.post(
+        this.getFullPath(endpoint),
+        this.getOptions(options)
+      );
     } else {
       return this.transport.post(this.getFullPath(endpoint));
     }
@@ -64,7 +70,10 @@ class BaseApi {
 
   put(endpoint: string, options?: HTTPOption) {
     if (options) {
-      return this.transport.put(this.getFullPath(endpoint), this.getOptions(options));
+      return this.transport.put(
+        this.getFullPath(endpoint),
+        this.getOptions(options)
+      );
     } else {
       return this.transport.put(this.getFullPath(endpoint));
     }
@@ -72,7 +81,10 @@ class BaseApi {
 
   delete(endpoint: string, options?: HTTPOption) {
     if (options) {
-      return this.transport.delete(this.getFullPath(endpoint), this.getOptions(options));
+      return this.transport.delete(
+        this.getFullPath(endpoint),
+        this.getOptions(options)
+      );
     } else {
       return this.transport.delete(this.getFullPath(endpoint));
     }

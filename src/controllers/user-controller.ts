@@ -1,8 +1,8 @@
-import userApi from '../api/user-api';
-import { authApi } from '../api/auth-api';
-import { store } from '../utils/core/Store';
-import { MyRouter, routs } from '../index';
-import { IChangeData, IChangePassword } from '../api/user-api';
+import userApi from "../api/user-api";
+import { authApi } from "../api/auth-api";
+import { store } from "../utils/core/Store";
+import { MyRouter, routs } from "../index";
+import { IChangeData, IChangePassword } from "../api/user-api";
 
 class UserController {
   public changeProfile(data: IChangeData) {
@@ -10,7 +10,7 @@ class UserController {
       .changeProfile(data)
       .then(() =>
         authApi.userInfo().then((data) => {
-          store.setState('user', data.response);
+          store.setState("user", data.response);
           MyRouter.go(routs.profilePage);
         })
       )
@@ -32,12 +32,12 @@ class UserController {
     userApi
       .changeAva(data)
       .then((res) => {
-        // console.log("result change avatar:", res.response);
-        store.setState('user', res.response);
+        console.log("result change avatar:", res.response);
+        store.setState("user", res.response);
         MyRouter.go(routs.profilePage);
       })
       .catch(() => {
-        // console.log("error");
+        console.log("error");
         MyRouter.go(routs.errorPage);
       });
   }

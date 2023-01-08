@@ -1,5 +1,5 @@
-import buttonTemplate from './button.pug';
-import { Block } from '../../utils/core/Block';
+import { template as btnTemplate } from "./button.template";
+import { Block } from "../../utils/core/Block";
 
 type ButtonProps = {
   className: string;
@@ -9,11 +9,11 @@ type ButtonProps = {
 
 export class Button extends Block<ButtonProps> {
   constructor(props: ButtonProps) {
-    super('div', props);
+    super("div", props);
   }
 
   render() {
-    return this.compile(buttonTemplate, {
+    return this.compile(btnTemplate, {
       className: this.props.className,
       btnText: this.props.btnText,
     });

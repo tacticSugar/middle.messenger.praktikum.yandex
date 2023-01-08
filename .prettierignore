@@ -1,6 +1,3 @@
-node_modules
+# Ignore artifacts:
 dist
-.parcel-cache
-.cache
-.git
-.github
+node_modules

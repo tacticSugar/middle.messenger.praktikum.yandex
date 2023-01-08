@@ -1,6 +1,6 @@
-import { Block } from '../../utils/core/Block';
-import linkTemplate from './routed-link.pug';
-import { Router } from '../../utils/core/Router';
+import { Block } from "../../utils/core/Block";
+import { template as linkTemplate } from "./routed-link.template";
+import { Router } from "../../utils/core/Router";
 
 type RoutedLinkProps = {
   events?: Record<string, any>;
@@ -11,7 +11,7 @@ type RoutedLinkProps = {
 
 export class RoutedLink extends Block<RoutedLinkProps> {
   constructor(props: RoutedLinkProps) {
-    super('div', {
+    super("div", {
       ...props,
       events: props.events ?? {
         click: () => {

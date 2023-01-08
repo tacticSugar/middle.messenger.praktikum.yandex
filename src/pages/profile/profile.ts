@@ -1,11 +1,11 @@
-import './profile.scss';
-import avatarDefault from '../../static/img/ava.png';
-import profileTemplate from './profile.pug';
-import { Block } from '../../utils/core/Block';
-import { ButtonBack } from '../../components/buttonBack/buttonBack';
-import { RoutedLink } from '../../components/routed-link/routed-link';
-import { connect } from '../../utils/core/HOC';
-import { authController } from '../../controllers/auth-controller';
+import "./profile.less";
+import avatarDefault from "../../static/img/ava.png";
+import { template as profileTemplate } from "./profile.template";
+import { Block } from "../../utils/core/Block";
+import { ButtonBack } from "../../components/button-back/button-back";
+import { RoutedLink } from "../../components/routed-link/routed-link";
+import { connect } from "../../utils/core/HOC";
+import { authController } from "../../controllers/auth-controller";
 
 type ProfileProps = {
   avatar: string;
@@ -22,24 +22,24 @@ type ProfileProps = {
 
 class ProfilePage extends Block<ProfileProps> {
   constructor(props: ProfileProps) {
-    // console.log('create profile page');
-    super('div', {
+    console.log("create profile page");
+    super("div", {
       ...props,
       btnBack: new ButtonBack(),
       changeProfile: new RoutedLink({
-        url: '/settings',
-        className: 'blue',
-        linkText: 'изменить данные профиля',
+        url: "/settings",
+        className: "blue",
+        linkText: "изменить данные профиля",
       }),
       changePassword: new RoutedLink({
-        url: '/change-password',
-        className: 'blue',
-        linkText: 'изменить пароль',
+        url: "/change-password",
+        className: "blue",
+        linkText: "изменить пароль",
       }),
       out: new RoutedLink({
-        className: 'red',
-        linkText: 'выйти',
-        url: '',
+        className: "red",
+        linkText: "выйти",
+        url: "",
         events: {
           click: () => {
             authController.singOut();
@@ -64,7 +64,7 @@ class ProfilePage extends Block<ProfileProps> {
 function mapProfile(store: any) {
   let ava: string;
   if (store.user) {
-    ava = 'https://ya-praktikum.tech/api/v2/resources/' + store.user.avatar;
+    ava = "https://ya-praktikum.tech/api/v2/resources/" + store.user.avatar;
     return {
       fullName: store.user.first_name,
       shortName: store.user.second_name,
@@ -76,11 +76,11 @@ function mapProfile(store: any) {
   } else {
     ava = avatarDefault;
     return {
-      fullName: '',
-      shortName: '',
-      login: '',
-      email: '',
-      phone: '',
+      fullName: "",
+      shortName: "",
+      login: "",
+      email: "",
+      phone: "",
       avatar: ava,
     };
   }

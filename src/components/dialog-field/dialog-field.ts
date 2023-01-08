@@ -1,10 +1,10 @@
-import { Input } from '../input/input';
-import './dialog-field.scss';
-import dialogTemplate from './dialog-field.pug';
-import { Block } from '../../utils/core/Block';
-import { connect } from '../../utils/core/HOC';
-import { Button } from '../button/button';
-import { store } from '../../utils/core/Store';
+import { Input } from "../input/input";
+import "./dialog-field.less";
+import { template as dialogTemplate } from "./dialog-field.template";
+import { Block } from "../../utils/core/Block";
+import { connect } from "../../utils/core/HOC";
+import { Button } from "../button/button";
+import { store } from "../../utils/core/Store";
 
 type DialogFieldProps = {
   currentChat: number;
@@ -16,28 +16,29 @@ type DialogFieldProps = {
 
 class DialogField extends Block<DialogFieldProps> {
   constructor(props: DialogFieldProps) {
-    super('div', {
+    super("div", {
       ...props,
       idChat: props.currentChat,
       dialogChosen: props.dialogChosen,
       inputMessage: new Input({
-        inputClass: 'index-input-message',
-        inputType: 'text',
-        inputName: 'message',
-        inputCheckType: 'chat',
+        inputClass: "index-input-message",
+        inputType: "text",
+        inputName: "message",
+        inputCheckType: "chat",
       }),
       btnSendMessage: new Button({
-        className: 'index-send-btn',
-        btnText: '→',
+        className: "index-send-btn",
+        btnText: "→",
         events: {
           click: () => {
-            const textMessage = (document.querySelector('.index-input-message') as HTMLInputElement)
-              .value;
+            const textMessage = (
+              document.querySelector(".index-input-message") as HTMLInputElement
+            ).value;
             const socket = store.getState().socket;
             socket.send(
               JSON.stringify({
                 content: textMessage,
-                type: 'message',
+                type: "message",
               })
             );
           },
@@ -47,7 +48,7 @@ class DialogField extends Block<DialogFieldProps> {
   }
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     return this.compile(dialogTemplate, this.props);
   }
 }
@@ -55,7 +56,7 @@ class DialogField extends Block<DialogFieldProps> {
 function mapToDialog(store: any) {
   let isDialog: boolean = false;
   if (store.currentChat) {
-    // console.log(store.currentChat);
+    console.log(store.currentChat);
     isDialog = true;
   }
   let userId = null;

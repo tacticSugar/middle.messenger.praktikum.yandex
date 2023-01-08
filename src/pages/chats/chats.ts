@@ -1,17 +1,18 @@
-import { Block, TProps } from '../../utils/core/Block';
-import { ContactCard } from '../../components/profileCard/profileCard';
-import { compile } from 'pug';
-import { DialogField } from '../../components/dialog-field/dialog-field';
-import chatsTemplate from './chats.pug';
-import { store } from '../../utils/core/Store';
-import { connect } from '../../utils/core/HOC';
-import { Button } from '../../components/button/button';
-import { ModalAddChat } from '../../components/addChatModal/addChatModal';
-import { chatsController } from '../../controllers/chats-controller';
-import { RoutedLink } from '../../components/routed-link/routed-link';
-import { routs } from '../../index';
-import './chats.scss';
-import { MessageController } from '../../controllers/message-controller';
+import { Block } from "../../utils/core/Block";
+import { ContactCard } from "../../components/contact-card/contact-card";
+import { compile } from "pug";
+import { DialogField } from "../../components/dialog-field/dialog-field";
+import { TProps } from "../../utils/core/Block";
+import { template as chatsTemplate } from "./chats.template";
+import { store } from "../../utils/core/Store";
+import { connect } from "../../utils/core/HOC";
+import { Button } from "../../components/button/button";
+import { ModalAddChat } from "../../components/modal-add-chat/modal-add-chat";
+import { chatsController } from "../../controllers/chats-controller";
+import { RoutedLink } from "../../components/routed-link/routed-link";
+import { routs } from "../../index";
+import "./chats.less";
+import { MessageController } from "../../controllers/message-controller";
 
 type ChatsProps = {
   cardList: Record<string, any>[];
@@ -30,21 +31,21 @@ class ChatsPage extends Block<ChatsProps> {
     for (let user of store.getState().chats) {
       cardList.push(new ContactCard(user));
     }
-    super('div', {
+    super("div", {
       ...props,
       modalAddChat: new ModalAddChat(),
       linkProfile: new RoutedLink({
         url: routs.profilePage,
-        className: 'tools',
-        linkText: 'профиль',
+        className: "tools",
+        linkText: "профиль",
       }),
       btnAddChat: new Button({
-        className: 'add-chat',
-        btnText: '',
+        className: "add-chat",
+        btnText: "",
         events: {
           click: () => {
             // @ts-ignore
-            document.querySelector('.modal').classList.add('active');
+            document.querySelector(".modal").classList.add("active");
           },
         },
       }),
@@ -52,22 +53,23 @@ class ChatsPage extends Block<ChatsProps> {
       cardList: cardList,
       dialogField: new DialogField({
         dialogChosen: false,
-        userName: '',
+        userName: "",
         messageFlow: [],
       }),
       // dataIdDialogField: dialogField.id,
       events: {
         click: (event: Event) => {
           // @ts-ignore
-          const userCard = event.target.closest('.user-card');
+          const userCard = event.target.closest(".user-card");
           if (userCard) {
+            console.log("smtttt");
             const idChat: number = userCard.id;
             chatsController.getChatToken(idChat).then((resp) => {
               const token: string = resp.response.token;
-              store.setState('currentChat', idChat);
-              store.setState('currentDialog', []);
+              store.setState("currentChat", idChat);
+              store.setState("currentDialog", []);
               const socket = new MessageController();
-              store.setState('socket', socket.setConnect(token));
+              store.setState("socket", socket.setConnect(token));
             });
           }
         },
@@ -81,7 +83,7 @@ class ChatsPage extends Block<ChatsProps> {
 
   compile(template: string, props: TProps) {
     this.props.cardList = [];
-    // console.log(store.getState());
+    console.log(store.getState());
     for (let user of store.getState().chats) {
       this.props.cardList.push(new ContactCard(user));
     }
@@ -91,7 +93,7 @@ class ChatsPage extends Block<ChatsProps> {
       propsAndStubs[key] = compile(`div(data-id="${child.id}")`)();
     });
 
-    const fragment = this._createDocumentElement('template');
+    const fragment = this._createDocumentElement("template");
 
     let readyListOfCards: string[] = [];
     this.props.cardList.forEach((card: Block<Record<string, any>>) => {
@@ -99,20 +101,22 @@ class ChatsPage extends Block<ChatsProps> {
       readyListOfCards.push(
         `<div class='user-card' id=${contactId}>` +
           card.getContent().innerHTML.toString() +
-          '</div>'
+          "</div>"
       );
     });
     if (!fragment) {
       return;
     }
-    // console.log(fragment);
+    console.log(fragment);
     fragment.innerHTML = compile(template)({
       ...propsAndStubs,
       chatList: readyListOfCards,
     });
 
     Object.values(this.children).forEach((child) => {
-      const stub = (fragment as any).content.querySelector(`[data-id="${child.id}"]`);
+      const stub = (fragment as any).content.querySelector(
+        `[data-id="${child.id}"]`
+      );
       stub.replaceWith(child.getContent());
     });
     return (fragment as any).content;
