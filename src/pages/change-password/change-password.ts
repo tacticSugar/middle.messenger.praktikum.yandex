@@ -1,48 +1,47 @@
-import { Block } from "../../utils/core/Block";
-import { Input } from "../../components/input/input";
-import { SubmitButton } from "../../components/submit-button/submit-button";
-import { ButtonBack } from "../../components/button-back/button-back";
-import { template as changeProfTemplate } from "./change-password.template";
-import "./change-password.less";
-import { userController } from "../../controllers/user-controller";
-import avatarDefault from "../../static/img/ava.png";
-import { connect } from "../../utils/core/HOC";
+import { Block } from '../../utils/core/Block'
+import { Input } from '../../components/input/input'
+import { SubmitButton } from '../../components/submit-button/submit-button'
+import { ButtonBack } from '../../components/button-back/button-back'
+import { template as changeProfTemplate } from './change-password.template'
+import './change-password.less'
+import { userController } from '../../controllers/user-controller'
+import avatarDefault from '../../static/img/ava.png'
+import { connect } from '../../utils/core/HOC'
 
 type ChangePasswordProps = {
-  avatar: string;
-  btnBack: ButtonBack;
-  btnSubmit: SubmitButton;
-  inputOldPassword: Input;
-  inputNewPassword: Input;
-};
+  avatar: string
+  btnBack: ButtonBack
+  btnSubmit: SubmitButton
+  inputOldPassword: Input
+  inputNewPassword: Input
+}
 
 class ChangePasswordPage extends Block<ChangePasswordProps> {
   constructor(props: ChangePasswordProps) {
-    super("div", {
+    super('div', {
       ...props,
       btnBack: new ButtonBack(),
       btnSubmit: new SubmitButton({
-        text: "изменить",
+        text: 'изменить',
         events: {
           click: (event: Event) => {
-            event.preventDefault();
-            const target = event.target as HTMLElement;
-            const form = target.closest("form");
+            event.preventDefault()
+            const target = event.target as HTMLElement
+            const form = target.closest('form')
             if (!form) {
-              return;
+              return
             }
             const pInTemplate: NodeListOf<HTMLParagraphElement> =
-              form.querySelectorAll(".input-error");
+              form.querySelectorAll('.input-error')
             for (const p of pInTemplate) {
-              if (p.style.display !== "none") {
-                console.log("не все данные валидны!");
-                return;
+              if (p.style.display !== 'none') {
+                return
               }
             }
             const inputsInTemplate: NodeListOf<HTMLInputElement> =
-              form.querySelectorAll(".inlineText");
+              form.querySelectorAll('.inlineText')
             for (const input of inputsInTemplate) {
-              console.log(input.value);
+              console.log(input.value)
             }
             userController.changePassword({
               oldPassword: (
@@ -51,44 +50,44 @@ class ChangePasswordPage extends Block<ChangePasswordProps> {
               newPassword: (
                 form.querySelector('[name="newPassword"]') as HTMLInputElement
               )?.value,
-            });
+            })
           },
         },
       }),
       inputOldPassword: new Input({
-        textLabel: "старый пароль",
-        inputClass: "inlineText",
-        inputType: "password",
-        inputName: "oldPassword",
-        inputCheckType: "password",
+        textLabel: 'старый пароль',
+        inputClass: 'inlineText',
+        inputType: 'password',
+        inputName: 'oldPassword',
+        inputCheckType: 'password',
       }),
       inputNewPassword: new Input({
-        textLabel: "новый пароль",
-        inputClass: "inlineText",
-        inputType: "password",
-        inputName: "newPassword",
-        inputCheckType: "password",
+        textLabel: 'новый пароль',
+        inputClass: 'inlineText',
+        inputType: 'password',
+        inputName: 'newPassword',
+        inputCheckType: 'password',
       }),
-    });
+    })
   }
 
   render() {
-    return this.compile(changeProfTemplate, { urlIm: this.props.avatar });
+    return this.compile(changeProfTemplate, { urlIm: this.props.avatar })
   }
 }
 
 function mapChangeProfile(store: any) {
-  let ava: string;
+  let ava: string
   if (store.user.avatar) {
-    ava = "https://ya-praktikum.tech/api/v2/resources/" + store.user.avatar;
+    ava = 'https://ya-praktikum.tech/api/v2/resources/' + store.user.avatar
   } else {
-    ava = avatarDefault;
+    ava = avatarDefault
   }
   return {
     avatar: ava,
-  };
+  }
 }
 
-const con = connect(mapChangeProfile);
-const changePassword = con(ChangePasswordPage);
-export { changePassword as ChangePasswordPage };
+const con = connect(mapChangeProfile)
+const changePassword = con(ChangePasswordPage)
+export { changePassword as ChangePasswordPage }

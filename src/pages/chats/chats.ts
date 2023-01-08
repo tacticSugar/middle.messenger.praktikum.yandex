@@ -1,51 +1,51 @@
-import { Block } from "../../utils/core/Block";
-import { ContactCard } from "../../components/contact-card/contact-card";
-import { compile } from "pug";
-import { DialogField } from "../../components/dialog-field/dialog-field";
-import { TProps } from "../../utils/core/Block";
-import { template as chatsTemplate } from "./chats.template";
-import { store } from "../../utils/core/Store";
-import { connect } from "../../utils/core/HOC";
-import { Button } from "../../components/button/button";
-import { ModalAddChat } from "../../components/modal-add-chat/modal-add-chat";
-import { chatsController } from "../../controllers/chats-controller";
-import { RoutedLink } from "../../components/routed-link/routed-link";
-import { routs } from "../../index";
-import "./chats.less";
-import { MessageController } from "../../controllers/message-controller";
+import { Block } from '../../utils/core/Block'
+import { ContactCard } from '../../components/contact-card/contact-card'
+import { compile } from 'pug'
+import { DialogField } from '../../components/dialog-field/dialog-field'
+import { TProps } from '../../utils/core/Block'
+import { template as chatsTemplate } from './chats.template'
+import { store } from '../../utils/core/Store'
+import { connect } from '../../utils/core/HOC'
+import { Button } from '../../components/button/button'
+import { ModalAddChat } from '../../components/modal-add-chat/modal-add-chat'
+import { chatsController } from '../../controllers/chats-controller'
+import { RoutedLink } from '../../components/routed-link/routed-link'
+import { routs } from '../../index'
+import './chats.less'
+import { MessageController } from '../../controllers/message-controller'
 
 type ChatsProps = {
-  cardList: Record<string, any>[];
-  modalAddChat: ModalAddChat;
-  linkProfile: RoutedLink;
-  btnAddChat: Button;
-  dialogChosen: boolean;
-  dialogField: unknown; // не понимаю почему, но если указываю DialogField то всё ломается
-  events: Record<string, any>;
-  isDialog: boolean;
-};
+  cardList: Record<string, any>[]
+  modalAddChat: ModalAddChat
+  linkProfile: RoutedLink
+  btnAddChat: Button
+  dialogChosen: boolean
+  dialogField: unknown // не понимаю почему, но если указываю DialogField то всё ломается
+  events: Record<string, any>
+  isDialog: boolean
+}
 
 class ChatsPage extends Block<ChatsProps> {
   constructor(props: ChatsProps) {
-    let cardList: ContactCard[] = [];
+    let cardList: ContactCard[] = []
     for (let user of store.getState().chats) {
-      cardList.push(new ContactCard(user));
+      cardList.push(new ContactCard(user))
     }
-    super("div", {
+    super('div', {
       ...props,
       modalAddChat: new ModalAddChat(),
       linkProfile: new RoutedLink({
         url: routs.profilePage,
-        className: "tools",
-        linkText: "профиль",
+        className: 'tools',
+        linkText: 'профиль',
       }),
       btnAddChat: new Button({
-        className: "add-chat",
-        btnText: "",
+        className: 'add-chat',
+        btnText: '',
         events: {
           click: () => {
             // @ts-ignore
-            document.querySelector(".modal").classList.add("active");
+            document.querySelector('.modal').classList.add('active')
           },
         },
       }),
@@ -53,82 +53,81 @@ class ChatsPage extends Block<ChatsProps> {
       cardList: cardList,
       dialogField: new DialogField({
         dialogChosen: false,
-        userName: "",
+        userName: '',
         messageFlow: [],
       }),
       // dataIdDialogField: dialogField.id,
       events: {
         click: (event: Event) => {
           // @ts-ignore
-          const userCard = event.target.closest(".user-card");
+          const userCard = event.target.closest('.user-card')
           if (userCard) {
-            console.log("smtttt");
-            const idChat: number = userCard.id;
+            const idChat: number = userCard.id
             chatsController.getChatToken(idChat).then((resp) => {
-              const token: string = resp.response.token;
-              store.setState("currentChat", idChat);
-              store.setState("currentDialog", []);
-              const socket = new MessageController();
-              store.setState("socket", socket.setConnect(token));
-            });
+              const token: string = resp.response.token
+              store.setState('currentChat', idChat)
+              store.setState('currentDialog', [])
+              const socket = new MessageController()
+              store.setState('socket', socket.setConnect(token))
+            })
           }
         },
       },
-    });
+    })
   }
 
   render() {
-    return this.compile(chatsTemplate, { isDialog: this.props.isDialog });
+    return this.compile(chatsTemplate, { isDialog: this.props.isDialog })
   }
 
   compile(template: string, props: TProps) {
-    this.props.cardList = [];
-    console.log(store.getState());
+    this.props.cardList = []
+
     for (let user of store.getState().chats) {
-      this.props.cardList.push(new ContactCard(user));
+      this.props.cardList.push(new ContactCard(user))
     }
-    const propsAndStubs = { ...props };
+    const propsAndStubs = { ...props }
 
     Object.entries(this.children).forEach(([key, child]) => {
-      propsAndStubs[key] = compile(`div(data-id="${child.id}")`)();
-    });
+      propsAndStubs[key] = compile(`div(data-id="${child.id}")`)()
+    })
 
-    const fragment = this._createDocumentElement("template");
+    const fragment = this._createDocumentElement('template')
 
-    let readyListOfCards: string[] = [];
+    let readyListOfCards: string[] = []
     this.props.cardList.forEach((card: Block<Record<string, any>>) => {
-      const contactId = card.props.idChat;
+      const contactId = card.props.idChat
       readyListOfCards.push(
         `<div class='user-card' id=${contactId}>` +
           card.getContent().innerHTML.toString() +
-          "</div>"
-      );
-    });
+          '</div>'
+      )
+    })
     if (!fragment) {
-      return;
+      return
     }
-    console.log(fragment);
+
     fragment.innerHTML = compile(template)({
       ...propsAndStubs,
       chatList: readyListOfCards,
-    });
+    })
 
     Object.values(this.children).forEach((child) => {
       const stub = (fragment as any).content.querySelector(
         `[data-id="${child.id}"]`
-      );
-      stub.replaceWith(child.getContent());
-    });
-    return (fragment as any).content;
+      )
+      stub.replaceWith(child.getContent())
+    })
+    return (fragment as any).content
   }
 }
 
 function mapToChats(store: any) {
   return {
     cardList: store.chats,
-  };
+  }
 }
 
-const con = connect(mapToChats);
-const chats = con(ChatsPage);
-export { chats as ChatsPage };
+const con = connect(mapToChats)
+const chats = con(ChatsPage)
+export { chats as ChatsPage }
